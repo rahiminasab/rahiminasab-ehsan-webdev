@@ -1,8 +1,13 @@
-# web-dev-template
+I am Ehsan RahimiNasab, graduate student in computer science atNortheastern university. Currently I am doing my co-op at TripAdvisor as Data Warehouse Engineer. 
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+This repo is for CS5610 (Web Development) course I have taken this summer. 
+
+Links:
+
+Heroku: https://web-dev-2017.herokuapp.com/
+
+Project: 
+
+Assignment:
+
+
