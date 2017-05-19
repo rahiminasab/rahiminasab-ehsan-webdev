@@ -4,7 +4,7 @@ This repo is for CS5610 (Web Development) course I have taken this summer.
 
 Links:
 
-Heroku: https://web-dev-2017.herokuapp.com/
+Heroku: https://polar-sea-20689.herokuapp.com
 
 Project: 
 
