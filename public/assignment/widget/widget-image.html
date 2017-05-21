@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Edit</title>
+    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a class="navbar-link"
+                   href="../widget/widget-list.html">
+                    <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                </a>
+            </p>
+
+            <a class="navbar-brand" href="">
+                Widget Edit
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="../widget/widget-list.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input class="form-control"
+           placeholder="Name"
+           value="1st Spring"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input class="form-control"
+           placeholder="facebook"
+           value="My first Spring!"
+           id="text"/>
+
+    <label for="url">URL</label>
+    <input class="form-control"
+           placeholder="facebook"
+           value="http://mycorp.myserver.com/myFirstSpring.jpg"
+           id="url"/>
+
+    <label for="width">Width</label>
+    <input class="form-control"
+           placeholder="width in percentage or pixels"
+           value="100%"
+           id="width"/>
+
+    <label for="file">Upload</label>
+    <input id="file" multiple type="file" class="form-control"/>
+
+    <a href=""
+       class="btn btn-block btn-success">Upload</a>
+
+    <a href="widget-list.html"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a class="navbar-link" href="../user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
