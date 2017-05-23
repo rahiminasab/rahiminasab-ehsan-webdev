@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page List</title>
-    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
                 <a class="navbar-link"
-                   href="../website/website-list.html">
+                   href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-chevron-left pull-left"></span>
                 </a>
             </p>
 
             <a class="navbar-brand" href="">
-                Pages
+                Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="../page/page-new.html" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -54,8 +43,8 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../widget/widget-list.html">
-                        My Page 1
+                    <a href="../../page/templates/page-list.view.client.html">
+                        Eventbook
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
@@ -65,7 +54,7 @@
                     2/2/2017
                 </div>
                 <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="../page/page-edit.html">
+                    <a href="it.html">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -73,19 +62,19 @@
         </li>
         <li class="list-group-item">
             <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../widget/widget-list.html">
-                        My Page 2
+                <div class="col-lg-5 col-md-8 col-xs-9">
+                    <a href="../../page/templates/page-list.view.client.html">
+                        My Blog
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    2/1/2017
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
+                    3/2/2017
                 </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="../page/page-edit.html">
+                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
+                    <a href="it.html">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -93,19 +82,19 @@
         </li>
         <li class="list-group-item">
             <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../widget/widget-list.html">
-                        My Page 3
+                <div class="col-lg-5 col-md-8 col-xs-9">
+                    <a href="../../page/templates/page-list.view.client.html">
+                        Best Tweets
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    4/1/2017
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
+                    5/2/2017
                 </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="../page/page-edit.html">
+                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
+                    <a href="it.html">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -113,19 +102,19 @@
         </li>
         <li class="list-group-item">
             <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../widget/widget-list.html">
-                        My Page 4
+                <div class="col-lg-5 col-md-8 col-xs-9">
+                    <a href="../../page/templates/page-list.view.client.html">
+                        PokeIt
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    6/1/2017
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
+                    7/2/2017
                 </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="../page/page-edit.html">
+                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
+                    <a href="it.html">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -137,12 +126,9 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="../user/profile.html">
+            <a class="navbar-link" href="#!/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
