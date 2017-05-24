@@ -3,16 +3,26 @@
  */
 (function () {
     angular
-        .module('WAM')
-        .controller('profileController', profileController);
+        .module('WebAppMaker')
+        .controller('ProfileController', ProfileController);
 
-    function profileController($location, $routeParams, userService) {
+    function ProfileController($location, $routeParams, UserService) {
 
         var model = this;
 
         var userId = $routeParams['userId'];
 
-        model.user = userService.findUserById(userId);
+        model.user = UserService.findUserById(userId);
+
+        model.updateProfile = updateProfile;
+
+        function updateProfile() {
+            var success = UserService.updateUser(userId, model.user);
+            if(success)
+                model.message = "profile has been updated successfully!";
+            else
+                model.message = "profile update error";
+        }
 
     }
 

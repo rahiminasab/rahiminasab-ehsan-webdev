@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('WAM',['ngRoute'])
+        .module('WebAppMaker',['ngRoute'])
         .config(configuration);
 
     function configuration($routeProvider) {
@@ -13,17 +13,17 @@
             })
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',
-                controller: 'loginController',
+                controller: 'LoginController',
                 controllerAs: 'model'
             })
             .when('/register', {
                 templateUrl: 'views/user/templates/register.view.client.html',
-                controller: 'registerController',
+                controller: 'RegisterController',
                 controllerAs: 'model'
             })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
-                controller: 'profileController',
+                controller: 'ProfileController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website', {
@@ -41,7 +41,7 @@
                 controller: 'WebsiteEditController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page', {
+            /*.when('/user/:userId/website/:websiteId/page', {
                 templateUrl : 'views/page/templates/page-list.view.client.html',
                 controller: 'PageListController',
                 controllerAs: 'model'
@@ -55,7 +55,22 @@
                 templateUrl : 'views/page/templates/page-edit.view.client.html',
                 controller: 'PageEditController',
                 controllerAs: 'model'
+            })*/
+            /*.when('/user/:userId/website/:websiteId/page/:pageId/widget', {
+                templateUrl : 'views/widget/templates/widget-list.view.client.html',
+                controller: 'WidgetListController',
+                controllerAs: 'model'
             })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
+                templateUrl : 'views/widget/templates/widget-chooser.view.client.html',
+                controller: 'WidgetNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+                templateUrl : 'views/widget/templates/widget-edit.view.client.html',
+                controller: 'WidgetEditController',
+                controllerAs: 'model'
+            })*/
     }
 
 })();

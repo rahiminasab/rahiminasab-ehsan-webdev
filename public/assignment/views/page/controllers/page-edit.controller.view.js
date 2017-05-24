@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('WAM')
+        .module('WebAppMaker')
         .controller('PageEditController', PageEditController);
 
     function PageEditController() {
