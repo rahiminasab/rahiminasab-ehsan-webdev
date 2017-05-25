@@ -4,7 +4,7 @@
 (function () {
     angular
         .module('WebAppMaker')
-        .factory('WebsiteService', WebsiteService);
+        .service('WebsiteService', WebsiteService);
 
     function WebsiteService() {
 
@@ -18,19 +18,16 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
-        var api = {
-            createWebsite:      createWebsite,
-            findWebsitesByUser: findWebsitesByUser,
-            findWebsiteById:    findWebsiteById,
-            updateWebsite:      updateWebsite,
-            deleteWebsite:      deleteWebsite
-        };
-
-        return api;
+            this.createWebsite =      createWebsite;
+            this.findWebsitesByUser = findWebsitesByUser;
+            this.findWebsiteById =    findWebsiteById;
+            this.updateWebsite =      updateWebsite;
+            this.deleteWebsite =      deleteWebsite;
 
         function createWebsite(userId, website) {
             if(findWebsiteById(website._id) === null) {
                 website.developerId = userId;
+                website._id = ""+Math.floor((Math.random() * 100) + 1);
                 websites.push(website);
             }
         }
@@ -38,8 +35,11 @@
         function findWebsitesByUser(userId) {
             var userWebsites = [];
             for(var w in websites) {
-                if(websites[w].developerId === userId)
+                if(websites[w].developerId === userId) {
+                    websites[w].created = new Date();
+                    websites[w].accessed = new Date();
                     userWebsites.push(websites[w]);
+                }
             }
             return userWebsites;
 
@@ -69,15 +69,17 @@
         }
 
         function deleteWebsite(websiteId) {
-            var index = null;
-            for(var w in websites) {
+            var website = findWebsiteById(websiteId);
+            var index = websites.indexOf(website);
+
+            /*for(var w in websites) {
                 if(websites[w]._id === websiteId) {
                     index = w;
                     break;
                 }
-            }
+            }*/
 
-            if(index !== null) {
+            if(index !== null || typeof index !== 'undefined') {
                 websites.splice(index, 1);
             }
         }

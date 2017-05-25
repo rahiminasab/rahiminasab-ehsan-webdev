@@ -31,7 +31,7 @@
                         New Website
                     </a>
                     <p class="navbar-text pull-right">
-                        <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                        <a ng-click="model.createWebsite(website)" class="navbar-link">
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
                     </p>
@@ -64,96 +64,39 @@
                     </div>
                 </li>
 
-                <li class="list-group-item">
+                <li ng-repeat="website in model.websites" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8  col-xs-9">
-                            <a href="../page/page-list.html">
-                                Eventbook
+                            <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                                {{website.name}}
                             </a>
                         </div>
                         <div class="col-lg-3 visible-lg">
-                            1/1/2017
+                            {{website.created | date}}
                         </div>
-                        <div class="col-md-3 visible-lg">
-                            2/2/2017
+                        <div class="col-md-3 hidden-sm hidden-xs">
+                            {{website.accessed | date}}
                         </div>
                         <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                            <a href="it.html">
+                            <a href="#!/user/{{model.userId}}/website/{{website._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-8 col-xs-9">
-                            <a href="../page/page-list.html">
-                                My Blog
-                            </a>
-                        </div>
-                        <div class="col-lg-3 visible-lg">
-                            2/1/2017
-                        </div>
-                        <div class="col-md-3 visible-lg">
-                            3/2/2017
-                        </div>
-                        <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                            <a href="it.html">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-8 col-xs-9">
-                            <a href="../page/page-list.html">
-                                Best Tweets
-                            </a>
-                        </div>
-                        <div class="col-lg-3 visible-lg">
-                            4/1/2017
-                        </div>
-                        <div class="col-md-3 visible-lg">
-                            5/2/2017
-                        </div>
-                        <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                            <a href="it.html">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-8 col-xs-9">
-                            <a href="../page/page-list.html">
-                                PokeIt
-                            </a>
-                        </div>
-                        <div class="col-lg-3 visible-lg">
-                            6/1/2017
-                        </div>
-                        <div class="col-md-3 visible-lg">
-                            7/2/2017
-                        </div>
-                        <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                            <a href="it.html">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
             <label for="name">Name</label>
-            <input class="form-control"
+            <input ng-model="website.name"
+                   class="form-control"
                    placeholder="Name"
                    id="name"/>
 
             <label for="description">Description</label>
-            <textarea id="description"
+            <textarea ng-model="website.description"
+                      id="description"
                       rows="5"
                       placeholder="Description..."
                       class="form-control"></textarea>

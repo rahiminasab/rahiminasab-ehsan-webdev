@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <p class="navbar-text pull-left">
                 <a class="navbar-link"
-                   href="../../website/templates/website-list.view.client.html">
+                   href="#!/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left pull-left"></span>
                 </a>
             </p>
@@ -12,7 +12,7 @@
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="w.html" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -40,81 +40,21 @@
         </li>
 
 
-        <li class="list-group-item">
+        <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        My Page 1
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    {{page.created | date}}
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
+                    {{page.accessed | date}}
                 </div>
                 <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        My Page 2
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
-                </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        My Page 3
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
-                </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        My Page 4
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
-                </div>
-                <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -123,12 +63,4 @@
     </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a class="navbar-link" href="../../user/templates/profile.view.client.html">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </div>
-    </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>

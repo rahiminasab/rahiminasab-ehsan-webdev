@@ -34,87 +34,26 @@
                     <strong>Accessed</strong>
                 </div>
                 <div class="col-sm-1 col-xs-3 pull-right">
-
                 </div>
             </div>
         </li>
 
 
-        <li class="list-group-item">
+        <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8  col-xs-9">
-                    <a href="../../page/templates/page-list.view.client.html">
-                        Eventbook
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                        {{website.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    {{website.created | date}}
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    2/2/2017
+                    {{website.accessed | date}}
                 </div>
                 <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-xs-9">
-                    <a href="../../page/templates/page-list.view.client.html">
-                        My Blog
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    2/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    3/2/2017
-                </div>
-                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-xs-9">
-                    <a href="../../page/templates/page-list.view.client.html">
-                        Best Tweets
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    4/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    5/2/2017
-                </div>
-                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-xs-9">
-                    <a href="../../page/templates/page-list.view.client.html">
-                        PokeIt
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    6/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm hidden-xs">
-                    7/2/2017
-                </div>
-                <div class="col-sm-1 col-xs-3 website-edit-button pull-right">
-                    <a href="it.html">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>

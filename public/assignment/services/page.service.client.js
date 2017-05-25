@@ -27,6 +27,7 @@
         function createPage(websiteId, page) {
             if(findPageById(page._id) === null) {
                 page.websiteId = websiteId;
+                page._id = ""+Math.floor((Math.random() * 100) + 1);
                 pages.push(page);
             }
         }
@@ -34,8 +35,11 @@
         function findPageByWebsiteId(websiteId) {
             var websitePages = [];
             for(var p in pages) {
-                if(pages[p].websiteId === websiteId)
+                if(pages[p].websiteId === websiteId) {
+                    pages[p].created = new Date();
+                    pages[p].accessed = new Date();
                     websitePages.push(pages[p]);
+                }
             }
             return websitePages;
         }

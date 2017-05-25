@@ -11,15 +11,18 @@
     <script src="../vendor/angular/angular.min.js"></script>
     <script src="../vendor/angular/angular-route.min.js"></script>
     <script src="app.js"></script>
+    <script src="config.js"></script>
     <script src="views/user/controllers/login.controller.view.js"></script>
     <script src="views/user/controllers/register.controller.view.js"></script>
     <script src="views/user/controllers/profile.controller.view.js"></script>
     <script src="views/website/controllers/website-list.controller.view.js"></script>
     <script src="views/website/controllers/website-new.controller.view.js"></script>
     <script src="views/website/controllers/website-edit.controller.view.js"></script>
-    <!--<script src="views/page/controllers/page-list.controller.view.js"></script>
+    <script src="views/page/controllers/page-list.controller.view.js"></script>
     <script src="views/page/controllers/page-new.controller.view.js"></script>
-    <script src="views/page/controllers/page-edit.controller.view.js"></script>-->
+    <script src="views/page/controllers/page-edit.controller.view.js"></script>
+    <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+
 
     <script src="services/user.service.client.js"></script>
     <script src="services/website.service.client.js"></script>
@@ -30,21 +33,20 @@
 
     <title>Web App Maker</title>
 
-    <link href="css/style.css" rel="stylesheet">
-
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="../vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--<link href="../vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">-->
     <!-- Custom styles for this template -->
     <link href="../vendor/bootstrap/theme.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
 
 
 
 </head>
 
 <body>
-
 
     <div ng-view>
 

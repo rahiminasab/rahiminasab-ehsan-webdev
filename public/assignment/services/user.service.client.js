@@ -28,10 +28,12 @@
 
         function createUser(user) {
             if(findUserById(user._id) === null) {
+                user._id = ""+Math.floor((Math.random() * 100) + 1);
+                user.created = new Date();
                 users.push(user);
-                return true;
+                return user;
             }
-            return false;
+            return null;
 
         }
 
@@ -44,13 +46,14 @@
         }
         
         function findUserByUsername(username) {
-            for(var u in users) {
-                var user = users[u];
-                if( user.username === username) {
-                    return user;
-                }
+            var user = users.find(function (user) {
+                return user.username === username;
+            });
+
+            if(typeof user === 'undefined') {
+                return null;
             }
-            return null;
+            return user;
         }
 
         function findUserByCredentials(username, password) {
