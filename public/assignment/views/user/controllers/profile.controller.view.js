@@ -14,6 +14,8 @@
 
         model.user = UserService.findUserById(userId);
 
+        model.userId = userId;
+
         model.updateProfile = updateProfile;
 
         function updateProfile() {
