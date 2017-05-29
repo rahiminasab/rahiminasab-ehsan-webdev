@@ -1,0 +1,33 @@
+
+<label for="name">Name</label>
+<input class="form-control"
+       placeholder="name"
+       ng-model="model.widget.name"
+       id="name"/>
+
+<label for="text">Text</label>
+<input class="form-control"
+       placeholder="facebook"
+       ng-model="model.widget.text"
+       id="text"/>
+
+<label for="url">URL</label>
+<input class="form-control"
+       placeholder="http://mycorp.myserver.com/myFirstSpring.jpg"
+       ng-model="model.widget.url"
+       id="url"/>
+
+<label for="width">Width</label>
+<input class="form-control"
+       placeholder="width in percentage or pixels"
+       ng-model="model.widget.width"
+       id="width"/>
+
+<label for="file">Upload</label>
+<input id="file" multiple type="file" class="form-control"/>
+
+<a href=""
+   class="btn btn-block btn-success">Upload</a>
+
+<a ng-click="model.deleteWidget(model.widgetId)"
+   class="btn btn-block btn-danger">Delete</a>
