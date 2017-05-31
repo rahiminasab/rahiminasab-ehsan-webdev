@@ -10,20 +10,35 @@
 
         var model = this;
 
-        var userId = $routeParams['userId'];
-
-        model.user = UserService.findUserById(userId);
-
-        model.userId = userId;
-
         model.updateProfile = updateProfile;
 
+        model.userId = $routeParams['userId'];
+
+        function init() {
+            UserService
+                .findUserById(model.userId)
+                .then(
+                    function (res) {
+                        model.user = res.data;
+                    },
+                    function (err) {
+                        model.error = "Unknown user request!"
+                    }
+                )
+        }
+
+        init();
+
         function updateProfile() {
-            var success = UserService.updateUser(userId, model.user);
-            if(success)
-                model.message = "profile has been updated successfully!";
-            else
-                model.message = "profile update error";
+            UserService
+                .updateUser(model.userId, model.user)
+                .then(
+                    function(res){
+                        model.message = "Your profile has been updated successfully!"
+                    },
+                    function(err){
+                        model.error = "The profile cannot be updated!"
+                    });
         }
 
     }

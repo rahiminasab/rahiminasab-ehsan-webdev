@@ -19,11 +19,30 @@
                 return;
             }
             if(password1 !== null && password1 !== '' && typeof password1 !== 'undefined' && password1 === password2) {
-                if(UserService.findUserByUsername(username) === null) {
-                    var user = {username: username, password: password1};
-                    var newuser = UserService.createUser(user);
-                    $location.url('/user/' + newuser._id);
+                var found = false;
+                UserService
+                    .findUserByUsername(username)
+                    .then(
+                        function (res) {
+                            found = true;
+                        },
+                        function (err) {
 
+                        }
+                    );
+                if(!found) {
+                    var user = {username: username, password: password1};
+                    UserService
+                        .createUser(user)
+                        .then(
+                            function (res) {
+                                var newUser = res.data;
+                                $location.url('/user/' + newUser._id);
+                            },
+                            function (err) {
+                                model.message = "cannot register user " + username;
+                            }
+                        );
                 } else {
                     model.message = "user " + username + " already exists!";
                 }

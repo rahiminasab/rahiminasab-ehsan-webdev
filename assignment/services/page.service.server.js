@@ -13,7 +13,7 @@ module.exports = function(app) {
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     app.get("/api/page/:pageId", findPageById);
     app.put("/api/page/:pageId", updatePage);
-    app.delete("/api/page/:pageId". deletePage);
+    app.delete("/api/page/:pageId", deletePage);
     
     function createPage(req, res) {
         var page = req.body;
