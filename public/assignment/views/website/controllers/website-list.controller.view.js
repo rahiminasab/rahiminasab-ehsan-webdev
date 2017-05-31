@@ -14,7 +14,16 @@
 
         function init() {
 
-            model.websites = WebsiteService.findWebsitesByUser(model.userId);
+            WebsiteService
+                .findWebsitesByUser(model.userId)
+                .then(
+                    function (res) {
+                        model.websites = res.data;
+                    },
+                    function (err) {
+                        model.error = "cannot fetch websites for user!"
+                    }
+                );
         }
         init();
 
