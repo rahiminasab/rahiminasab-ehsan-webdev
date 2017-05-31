@@ -14,7 +14,16 @@
 
         function init() {
 
-            model.pages = PageService.findPageByWebsiteId(model.websiteId);
+            PageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(
+                    function (res) {
+                        model.pages = res.data;
+                    },
+                    function (err) {
+                        model.error = "cannot retrieve website pages!"
+                    }
+                );
         }
         init();
 

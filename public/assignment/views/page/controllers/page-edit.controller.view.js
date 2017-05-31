@@ -15,8 +15,26 @@
         model.pageId = $routeParams['pageId'];
 
         function init() {
-            model.pages = PageService.findPageByWebsiteId(model.websiteId);
-            model.page = PageService.findPageById(model.pageId)
+            PageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(
+                    function (res) {
+                        model.pages = res.data;
+                    },
+                    function (err) {
+                        model.error = "cannot retrieve website pages!"
+                    }
+                );
+            PageService
+                .findPageById(model.pageId)
+                .then(
+                    function (res) {
+                        model.page = res.data;
+                    },
+                    function (err) {
+                        model.error = "cannot retrieve page!"
+                    }
+                );
         }
         init();
 
@@ -24,13 +42,31 @@
         model.deletePage = deletePage;
 
         function updatePage() {
-            PageService.updatePage(model.page);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+            PageService
+                .updatePage(model.page)
+                .then(
+                    function (res) {
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                    },
+                    function (err) {
+                        model.error = "canot update the page!"
+                    }
+                );
+
         }
 
         function deletePage() {
-            PageService.deletePage(model.page._id);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+            PageService
+                .deletePage(model.page._id)
+                .then(
+                    function (res) {
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                    },
+                    function (err) {
+                        model.error = "cannot delete the page!"
+                    }
+                );
+
         }
 
     }
