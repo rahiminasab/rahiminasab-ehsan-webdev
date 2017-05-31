@@ -21,7 +21,7 @@
                         model.widget = res.data;
                     },
                     function (err) {
-                        model.error = "cannot fetch widget!"
+                        model.error = "cannot fetch widget!";
                     }
                 );
         }

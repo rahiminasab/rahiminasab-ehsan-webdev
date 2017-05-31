@@ -46,7 +46,8 @@
                 .createWidget(model.pageId, widget)
                 .then(
                     function (res) {
-                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id);
+                        var newWidget = res.data;
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newWidget._id);
                     },
                     function (err) {
                         model.error = "cannot create new widget!"
