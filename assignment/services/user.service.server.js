@@ -20,6 +20,8 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var user = req.body;
+        user._id = ""+Math.floor((Math.random() * 100) + 1);
+        user.created = new Date();
         users.push(user);
         res.json(user);
     }

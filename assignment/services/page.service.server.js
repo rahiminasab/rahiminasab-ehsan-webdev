@@ -17,6 +17,8 @@ module.exports = function(app) {
     
     function createPage(req, res) {
         var page = req.body;
+        page.websiteId = req.params.websiteId;
+        page._id = ""+Math.floor((Math.random() * 100) + 1);
         pages.push(page);
         res.json(page);
     }

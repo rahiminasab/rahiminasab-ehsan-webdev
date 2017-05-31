@@ -23,6 +23,8 @@ module.exports = function(app) {
     
     function createWidget(req, res) {
         var widget = req.body;
+        widget._id = ""+Math.floor(Math.random()*100+1);
+        widget.pageId = req.params.pageId;
         widgets.push(widget);
         res.json(widget);
     }

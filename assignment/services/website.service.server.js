@@ -22,6 +22,8 @@ module.exports = function(app) {
 
     function createWebsite(req, res) {
         var website = req.body;
+        website.developerId = req.params.userId;
+        website._id = ""+Math.floor((Math.random() * 100) + 1);
         websites.push(website);
         res.json(website);
     }
