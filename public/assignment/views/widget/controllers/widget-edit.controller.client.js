@@ -12,6 +12,7 @@
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
+        model.widgetEditUrl = "";
 
         function init() {
             WidgetService
@@ -19,6 +20,7 @@
                 .then(
                     function (res) {
                         model.widget = res.data;
+                        model.widgetEditUrl = 'views/widget/templates/components/widget-' + model.widget.widgetType.toLocaleLowerCase() + '-edit.view.client.html';
                     },
                     function (err) {
                         model.error = "cannot fetch widget!";
@@ -27,13 +29,8 @@
         }
         init();
 
-        model.widgetEditUrl = widgetEditUrl;
         model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
-
-        function widgetEditUrl() {
-            return 'views/widget/templates/components/widget-' + model.widget.widgetType.toLocaleLowerCase() + '-edit.view.client.html';
-        }
 
         function deleteWidget(widgetId) {
             WidgetService
