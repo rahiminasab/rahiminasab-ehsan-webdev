@@ -14,7 +14,16 @@
         model.pageId = $routeParams['pageId'];
 
         function init() {
-            model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
+            WidgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(
+                    function (res) {
+                        model.widgets = res.data;
+                    },
+                    function (err) {
+                        model.error = "failed to fetch widgets!"
+                    }
+                );
         }
         model.trust = trust;
         model.getYoutubeEmbedUrl = getYoutubeEmbedUrl;

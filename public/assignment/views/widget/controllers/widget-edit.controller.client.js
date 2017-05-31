@@ -14,7 +14,16 @@
         model.widgetId = $routeParams['widgetId'];
 
         function init() {
-            model.widget = WidgetService.findWidgetById(model.widgetId);
+            WidgetService
+                .findWidgetById(model.widgetId)
+                .then(
+                    function (res) {
+                        model.widget = res.data;
+                    },
+                    function (err) {
+                        model.error = "cannot fetch widget!"
+                    }
+                );
         }
         init();
 
@@ -27,13 +36,31 @@
         }
 
         function deleteWidget(widgetId) {
-            WidgetService.deleteWidget(widgetId);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            WidgetService
+                .deleteWidget(widgetId)
+                .then(
+                    function (res) {
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    },
+                    function (err) {
+                        model.error = "cannot delete widget!"
+                    }
+                );
+
         }
 
         function updateWidget(widgetId, widget) {
-            WidgetService.updateWidget(widgetId, widget);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            WidgetService
+                .updateWidget(widgetId, widget)
+                .then(
+                    function (res) {
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    },
+                    function (err) {
+                        model.error = "cannot update widget!"
+                    }
+                );
+
         }
     }
 
