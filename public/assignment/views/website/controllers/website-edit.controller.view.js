@@ -42,7 +42,7 @@
 
         function updateWebsite() {
             WebsiteService
-                .updateWebsite(model.website)
+                .updateWebsite(model.websiteId, model.website)
                 .then(
                     function (res) {
                         $location.url('/user/' + model.userId + '/website');
@@ -56,7 +56,7 @@
 
         function deleteWebsite() {
             WebsiteService
-                .deleteWebsite(model.website._id)
+                .deleteWebsite(model.websiteId)
                 .then(
                     function (res) {
                         $location.url('/user/' + model.userId + '/website');

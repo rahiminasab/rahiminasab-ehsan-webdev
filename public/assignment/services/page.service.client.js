@@ -33,7 +33,7 @@
         }
         
         function deletePage(pageId) {
-            return $http.delete("/api/page/" + pageId, page);
+            return $http.delete("/api/page/" + pageId);
         }
     }
 

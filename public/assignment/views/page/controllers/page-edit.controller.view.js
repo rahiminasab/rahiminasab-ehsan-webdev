@@ -43,7 +43,7 @@
 
         function updatePage() {
             PageService
-                .updatePage(model.page)
+                .updatePage(model.pageId, model.page)
                 .then(
                     function (res) {
                         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
@@ -57,7 +57,7 @@
 
         function deletePage() {
             PageService
-                .deletePage(model.page._id)
+                .deletePage(model.pageId)
                 .then(
                     function (res) {
                         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
