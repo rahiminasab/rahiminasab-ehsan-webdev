@@ -17,8 +17,8 @@
             WebsiteService
                 .findWebsitesByUser(model.userId)
                 .then(
-                    function (res) {
-                        model.websites = res.data;
+                    function (websites) {
+                        model.websites = websites;
                     },
                     function (err) {
                         model.error = "cannot fetch websites for user!"

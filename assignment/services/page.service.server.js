@@ -59,7 +59,8 @@ module.exports = function(app) {
             newPage._id = pages[index]._id;
             pages.splice(index, 1);
             pages.push(newPage);
-            res.json(newPage);
+            res.sendStatus(200);
+            return;
         }
         res.sendStatus(404);
     }
@@ -77,6 +78,7 @@ module.exports = function(app) {
         if(index > -1) {
             pages.splice(index, 1);
             res.sendStatus(200);
+            return;
         }
         res.sendStatus(404);
     }

@@ -64,7 +64,8 @@ module.exports = function(app) {
             newWebsite._id = websites[index]._id;
             websites.splice(index, 1);
             websites.push(newWebsite);
-            res.json(newWebsite);
+            res.sendStatus(200);
+            return;
         }
         res.sendStatus(404);
     }
@@ -82,6 +83,7 @@ module.exports = function(app) {
         if(index > -1) {
             websites.splice(index, 1);
             res.sendStatus(200);
+            return;
         }
         res.sendStatus(404);
     }

@@ -15,8 +15,8 @@
             WebsiteService
                 .findWebsitesByUser(model.userId)
                 .then(
-                    function (res) {
-                        model.websites = res.data;
+                    function (websites) {
+                        model.websites = websites;
                     },
                     function (err) {
                         model.error = "cannot fetch websites for user!"
@@ -31,7 +31,7 @@
             WebsiteService
                 .createWebsite(model.userId, website)
                 .then(
-                    function (res) {
+                    function (website) {
                         model.message = "website " + website.name + " has been created successfully";
                         $location.url('/user/' + model.userId + '/website');
                     },

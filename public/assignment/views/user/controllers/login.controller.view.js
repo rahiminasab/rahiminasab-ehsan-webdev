@@ -17,8 +17,7 @@
             UserService
                 .findUserByCredentials(username, password)
                 .then(
-                    function (res) {
-                        var user = res.data;
+                    function (user) {
                         $location.url('/user/' + user._id);
                     },
                     function (err) {

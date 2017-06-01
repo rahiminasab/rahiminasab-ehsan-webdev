@@ -18,9 +18,9 @@
             WidgetService
                 .findWidgetById(model.widgetId)
                 .then(
-                    function (res) {
-                        model.widget = res.data;
-                        model.widgetEditUrl = 'views/widget/templates/components/widget-' + model.widget.widgetType.toLocaleLowerCase() + '-edit.view.client.html';
+                    function (widget) {
+                        model.widget = widget;
+                        model.widgetEditUrl = 'views/widget/templates/components/widget-' + widget.widgetType.toLocaleLowerCase() + '-edit.view.client.html';
                     },
                     function (err) {
                         model.error = "cannot fetch widget!";
@@ -29,14 +29,28 @@
         }
         init();
 
-        model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
+        model.deleteWidget = deleteWidget;
+
+        function updateWidget(widgetId, widget) {
+            WidgetService
+                .updateWidget(widgetId, widget)
+                .then(
+                    function (success) {
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    },
+                    function (err) {
+                        model.error = "cannot update widget!"
+                    }
+                );
+
+        }
 
         function deleteWidget(widgetId) {
             WidgetService
                 .deleteWidget(widgetId)
                 .then(
-                    function (res) {
+                    function (deleted) {
                         $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
                     },
                     function (err) {
@@ -46,19 +60,6 @@
 
         }
 
-        function updateWidget(widgetId, widget) {
-            WidgetService
-                .updateWidget(widgetId, widget)
-                .then(
-                    function (res) {
-                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
-                    },
-                    function (err) {
-                        model.error = "cannot update widget!"
-                    }
-                );
-
-        }
     }
 
 })();

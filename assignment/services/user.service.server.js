@@ -101,7 +101,8 @@ module.exports = function(app) {
             newUser._id = users[index]._id;
             users.splice(index,1);
             users.push(newUser);
-            res.json(newUser);
+            res.sendStatus(200);
+            return;
         }
         res.sendStatus(404);
     }

@@ -17,8 +17,8 @@
             PageService
                 .findPageByWebsiteId(model.websiteId)
                 .then(
-                    function (res) {
-                        model.pages = res.data;
+                    function (pages) {
+                        model.pages = pages;
                     },
                     function (err) {
                         model.error = "cannot retrieve website pages!"

@@ -16,8 +16,8 @@
             PageService
                 .findPageByWebsiteId(model.websiteId)
                 .then(
-                    function (res) {
-                        model.pages = res.data;
+                    function (pages) {
+                        model.pages = pages;
                     },
                     function (err) {
                         model.error = "cannot retrieve website pages!"
@@ -32,7 +32,7 @@
             PageService
                 .createPage(model.websiteId, page)
                 .then(
-                    function (res) {
+                    function (page) {
                         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
                     },
                     function (err) {

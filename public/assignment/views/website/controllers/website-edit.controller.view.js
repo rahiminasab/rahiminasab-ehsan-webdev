@@ -16,8 +16,8 @@
             WebsiteService
                 .findWebsitesByUser(model.userId)
                 .then(
-                    function (res) {
-                        model.websites = res.data;
+                    function (websites) {
+                        model.websites = websites;
                     },
                     function (err) {
                         model.error = "cannot fetch websites for user!"
@@ -27,8 +27,8 @@
             WebsiteService
                 .findWebsiteById(model.websiteId)
                 .then(
-                    function (res) {
-                        model.website = res.data;
+                    function (website) {
+                        model.website = website;
                     },
                     function (err) {
                         model.error = "cannot retrieve website!";
@@ -44,7 +44,7 @@
             WebsiteService
                 .updateWebsite(model.websiteId, model.website)
                 .then(
-                    function (res) {
+                    function (success) {
                         $location.url('/user/' + model.userId + '/website');
                     },
                     function (err) {
@@ -58,7 +58,7 @@
             WebsiteService
                 .deleteWebsite(model.websiteId)
                 .then(
-                    function (res) {
+                    function (deleted) {
                         $location.url('/user/' + model.userId + '/website');
                     },
                     function (err) {

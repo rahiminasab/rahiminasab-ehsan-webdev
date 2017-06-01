@@ -17,8 +17,8 @@
             WidgetService
                 .findWidgetsByPageId(model.pageId)
                 .then(
-                    function (res) {
-                        model.widgets = res.data;
+                    function (widgets) {
+                        model.widgets = widgets;
                     },
                     function (err) {
                         model.error = "failed to fetch widgets!"

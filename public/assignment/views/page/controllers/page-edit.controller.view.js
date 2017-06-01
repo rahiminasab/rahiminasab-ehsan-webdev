@@ -18,8 +18,8 @@
             PageService
                 .findPageByWebsiteId(model.websiteId)
                 .then(
-                    function (res) {
-                        model.pages = res.data;
+                    function (pages) {
+                        model.pages = pages;
                     },
                     function (err) {
                         model.error = "cannot retrieve website pages!"
@@ -28,8 +28,8 @@
             PageService
                 .findPageById(model.pageId)
                 .then(
-                    function (res) {
-                        model.page = res.data;
+                    function (page) {
+                        model.page = page;
                     },
                     function (err) {
                         model.error = "cannot retrieve page!"
@@ -45,7 +45,7 @@
             PageService
                 .updatePage(model.pageId, model.page)
                 .then(
-                    function (res) {
+                    function (success) {
                         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
                     },
                     function (err) {
@@ -59,7 +59,7 @@
             PageService
                 .deletePage(model.pageId)
                 .then(
-                    function (res) {
+                    function (deleted) {
                         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
                     },
                     function (err) {

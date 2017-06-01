@@ -19,34 +19,26 @@
                 return;
             }
             if(password1 !== null && password1 !== '' && typeof password1 !== 'undefined' && password1 === password2) {
-                var found = false;
                 UserService
                     .findUserByUsername(username)
                     .then(
-                        function (res) {
-                            found = true;
+                        function (user) {
+                            model.message = "user " + username + " already exists!";
+                        },
+                        function (notFound) {
+                            var newUser = {username: username, password: password1};
+                            return UserService
+                                .createUser(newUser);
+                        }
+                    )
+                    .then(
+                        function (user) {
+                            $location.url('/user/' + user._id);
                         },
                         function (err) {
-
+                            model.message = "cannot register user " + username;
                         }
-                    );
-                if(!found) {
-                    var user = {username: username, password: password1};
-                    UserService
-                        .createUser(user)
-                        .then(
-                            function (res) {
-                                var newUser = res.data;
-                                $location.url('/user/' + newUser._id);
-                            },
-                            function (err) {
-                                model.message = "cannot register user " + username;
-                            }
-                        );
-                } else {
-                    model.message = "user " + username + " already exists!";
-                }
-
+                     );
             } else {
                 model.message = "passwords do not match or are empty!";
             }
