@@ -24,7 +24,7 @@ module.exports = function(app) {
         var website = req.body;
         website.developerId = req.params.userId;
         website._id = ""+Math.floor((Math.random() * 100) + 1);
-        websites.push(website);
+        websites.unshift(website);
         res.json(website);
     }
 
@@ -63,7 +63,7 @@ module.exports = function(app) {
         if(index > -1) {
             newWebsite._id = websites[index]._id;
             websites.splice(index, 1);
-            websites.push(newWebsite);
+            websites.unshift(newWebsite);
             res.sendStatus(200);
             return;
         }

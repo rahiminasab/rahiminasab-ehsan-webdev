@@ -41,35 +41,42 @@
                 controller: 'WebsiteEditController',
                 controllerAs: 'model'
             })
-        .when('/user/:userId/website/:websiteId/page', {
-         templateUrl : 'views/page/templates/page-list.view.client.html',
-         controller: 'PageListController',
-         controllerAs: 'model'
-         })
-         .when('/user/:userId/website/:websiteId/page/new', {
-         templateUrl : 'views/page/templates/page-new.view.client.html',
-         controller: 'PageNewController',
-         controllerAs: 'model'
-         })
-         .when('/user/:userId/website/:websiteId/page/:pageId', {
-         templateUrl : 'views/page/templates/page-edit.view.client.html',
-         controller: 'PageEditController',
-         controllerAs: 'model'
-         })
-        .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
-         templateUrl : 'views/widget/templates/widget-list.view.client.html',
-         controller: 'WidgetListController',
-         controllerAs: 'model'
-         })
-         .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
-         templateUrl : 'views/widget/templates/widget-chooser.view.client.html',
-         controller: 'WidgetNewController',
-         controllerAs: 'model'
-         })
-         .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
-         templateUrl : 'views/widget/templates/widget-edit.view.client.html',
-         controller: 'WidgetEditController',
-         controllerAs: 'model'
-         })
+            .when('/user/:userId/website/:websiteId/page', {
+                 templateUrl : 'views/page/templates/page-list.view.client.html',
+                 controller: 'PageListController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/new', {
+                 templateUrl : 'views/page/templates/page-new.view.client.html',
+                 controller: 'PageNewController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId', {
+                 templateUrl : 'views/page/templates/page-edit.view.client.html',
+                 controller: 'PageEditController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
+                 templateUrl : 'views/widget/templates/widget-list.view.client.html',
+                 controller: 'WidgetListController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
+                 templateUrl : 'views/widget/templates/widget-chooser.view.client.html',
+                 controller: 'WidgetNewController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+                 templateUrl : 'views/widget/templates/widget-edit.view.client.html',
+                 controller: 'WidgetEditController',
+                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/flickrSearch', {
+                templateUrl : 'views/widget/templates/components/widget-flickr-search.view.client.html',
+                controller: 'FlickrImageSearchController',
+                controllerAs: 'model'
+            })
+
+
     }
 })();

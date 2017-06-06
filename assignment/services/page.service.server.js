@@ -19,7 +19,7 @@ module.exports = function(app) {
         var page = req.body;
         page.websiteId = req.params.websiteId;
         page._id = ""+Math.floor((Math.random() * 100) + 1);
-        pages.push(page);
+        pages.unshift(page);
         res.json(page);
     }
     
@@ -58,7 +58,7 @@ module.exports = function(app) {
         if(index > -1) {
             newPage._id = pages[index]._id;
             pages.splice(index, 1);
-            pages.push(newPage);
+            pages.unshift(newPage);
             res.sendStatus(200);
             return;
         }

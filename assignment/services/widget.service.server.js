@@ -29,7 +29,7 @@ module.exports = function(app) {
         var widget = req.body;
         widget._id = ""+Math.floor(Math.random()*100+1);
         widget.pageId = req.params.pageId;
-        widgets.push(widget);
+        widgets.unshift(widget);
         res.json(widget);
     }
     
@@ -83,7 +83,7 @@ module.exports = function(app) {
         if(index > -1) {
             newWidget._id = widgets[index]._id;
             widgets.splice(index, 1);
-            widgets.push(newWidget);
+            widgets.unshift(newWidget);
             return newWidget;
         }
     }

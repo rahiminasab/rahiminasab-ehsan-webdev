@@ -21,7 +21,7 @@ module.exports = function(app) {
         var user = req.body;
         user._id = ""+Math.floor((Math.random() * 100) + 1);
         user.created = new Date();
-        users.push(user);
+        users.unshift(user);
         res.json(user);
     }
 
