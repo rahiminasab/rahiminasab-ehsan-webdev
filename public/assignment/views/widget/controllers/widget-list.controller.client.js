@@ -6,12 +6,16 @@
         .module('WebAppMaker')
         .controller('WidgetListController', WidgetListController);
 
-    function WidgetListController($sce, $routeParams, WidgetService) {
+    function WidgetListController($location, $sce, $routeParams, WidgetService) {
 
         var model = this;
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
+        model.reorderWidgets = reorderWidgets;
+        model.trust = trust;
+        model.getYoutubeEmbedUrl = getYoutubeEmbedUrl;
+        model.widgetTemplateUrl = widgetTemplateUrl;
 
         function init() {
             WidgetService
@@ -25,10 +29,6 @@
                     }
                 );
         }
-        model.trust = trust;
-        model.getYoutubeEmbedUrl = getYoutubeEmbedUrl;
-        model.widgetTemplateUrl = widgetTemplateUrl;
-
         init();
 
         function trust(html) {
@@ -44,6 +44,16 @@
 
         function widgetTemplateUrl(widget) {
             return 'views/widget/templates/components/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';
+        }
+
+        function reorderWidgets(initialIndex, finalIndex) {
+           WidgetService
+               .reorderWidget(model.pageId, initialIndex, finalIndex)
+               .then(
+                   function (success) {
+
+                   }
+               );
         }
     }
 })();

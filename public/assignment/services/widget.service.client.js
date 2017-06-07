@@ -13,7 +13,8 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById:      findWidgetById,
             updateWidget:        updateWidget,
-            deleteWidget:        deleteWidget
+            deleteWidget:        deleteWidget,
+            reorderWidget:      reorderWidget
         };
         
         function createWidget(pageId, widget) {
@@ -70,6 +71,19 @@
                         return false;
                     }
                 );
+        }
+
+        function reorderWidget(pageId, initialIndex, finalIndex) {
+            return $http
+                .put(" /page/" + pageId + "/widget?initial=" + initialIndex + "&final=" + finalIndex)
+                .then(
+                    function (res) {
+                        return true;
+                    },
+                    function (err) {
+                        return false;
+                    }
+                )
         }
     }
 })();
