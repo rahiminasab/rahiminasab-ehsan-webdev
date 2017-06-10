@@ -16,6 +16,8 @@
         model.createNewHeading = createNewHeading;
         model.createNewImage = createNewImage;
         model.createNewYoutube = createNewYoutube;
+        model.createNewHTML = createNewHTML;
+        model.createNewTextInput = createNewTextInput;
 
         function createNewHeading() {
             var widget = {
@@ -37,6 +39,20 @@
             var widget = {
                 "widgetType": "YOUTUBE",
                 "width" : "100%"
+            };
+            createNewWidget(widget);
+        }
+
+        function createNewHTML() {
+            var widget = {
+                "widgetType": "HTML"
+            };
+            createNewWidget(widget);
+        }
+
+        function createNewTextInput() {
+            var widget = {
+                "widgetType": "TEXT"
             };
             createNewWidget(widget);
         }

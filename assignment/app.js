@@ -1,17 +1,19 @@
 /**
  * Created by ehsan on 5/30/17.
  */
-module.exports = function(app) { // app is an instance of express
+var connectionString = 'mongodb://127.0.0.1:27017/webdev_assignment'; // for local
+if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
+    var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
+    var password = process.env.MLAB_PASSWORD_WEBDEV;
+    connectionString = 'mongodb://' + username + ':' + password;
+    connectionString += '@ds143191.mlab.com:43191/heroku_qnkpvr1t'; // user yours
+}
 
-    require("./services/user.service.server.js")(app);
-    require("./services/website.service.server.js")(app);
-    require("./services/page.service.server.js")(app);
-    require("./services/widget.service.server.js")(app);
+var mongoose = require("mongoose");
+mongoose.Promise = require('q').Promise;
+mongoose.connect(connectionString);
 
-    /*app.get("/say/:something", function(req, res){
-     var msg = req.params['something'];
-     res.send({message:msg})
-    });*/
-
-
-};
+require("./services/user.service.server.js");
+require("./services/website.service.server.js");
+require("./services/page.service.server.js");
+require("./services/widget.service.server.js");

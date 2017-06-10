@@ -56,7 +56,7 @@
                             <strong>Created</strong>
                         </div>
                         <div class="col-md-3 visible-lg ">
-                            <strong>Accessed</strong>
+                            <strong>Description</strong>
                         </div>
                         <div class="col-sm-1 col-xs-3 pull-right">
 
@@ -72,10 +72,10 @@
                             </a>
                         </div>
                         <div class="col-lg-3 visible-lg">
-                            {{website.created | date}}
+                            {{website.creationDate | date}}
                         </div>
                         <div class="col-md-3 hidden-sm hidden-xs">
-                            {{website.accessed | date}}
+                            {{website.description.substr(0, 15)}}...
                         </div>
                         <div class=" col-sm-1 col-xs-3 website-edit-button pull-right">
                             <a href="#!/user/{{model.userId}}/website/{{website._id}}">

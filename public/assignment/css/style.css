@@ -53,6 +53,19 @@ body {
     margin-bottom: 10px;
 }
 
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .wd-widget > img {
     width: 100%;
 }

@@ -28,7 +28,7 @@
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-        <div ng-include="model.widgetTemplateUrl(widget)"></div>
+        <div ng-include="model.widgetTemplateUrl(widget)" ng-class="{'youtube-widget': widget.widgetType=='YOUTUBE'}"></div>
         <!--<div ng-switch="widget.widgetType">
             <div ng-switch-when="HEADING" >
                 <div ng-include="'views/widget/templates/widget.heading.view.client.html'"></div>
