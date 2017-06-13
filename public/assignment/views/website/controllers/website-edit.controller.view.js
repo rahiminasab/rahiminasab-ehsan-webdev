@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('WebsiteEditController', WebsiteEditController);
 
-    function WebsiteEditController($location, $routeParams, WebsiteService) {
+    function WebsiteEditController($location, $routeParams, WebsiteService, currentUser) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
 
         function init() {
@@ -45,7 +45,7 @@
                 .updateWebsite(model.websiteId, model.website)
                 .then(
                     function (success) {
-                        $location.url('/user/' + model.userId + '/website');
+                        $location.url('/website');
                     },
                     function (err) {
                         model.error = "cannot update the website!"
@@ -59,7 +59,7 @@
                 .deleteWebsite(model.websiteId)
                 .then(
                     function (deleted) {
-                        $location.url('/user/' + model.userId + '/website');
+                        $location.url('/website');
                     },
                     function (err) {
                         model.error = "cannot delete the website!"

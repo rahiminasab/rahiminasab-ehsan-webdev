@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('WebsiteNewController', WebsiteNewController);
 
-    function WebsiteNewController($location, $routeParams, WebsiteService) {
+    function WebsiteNewController($location, $routeParams, WebsiteService, currentUser) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         function init() {
             WebsiteService
@@ -33,7 +33,7 @@
                 .then(
                     function (website) {
                         model.message = "website " + website.name + " has been created successfully";
-                        $location.url('/user/' + model.userId + '/website');
+                        $location.url('/website');
                     },
                     function (err) {
                         model.error = "website creation failed!"

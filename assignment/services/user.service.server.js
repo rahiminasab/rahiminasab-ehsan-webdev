@@ -4,12 +4,93 @@
 var app = require("../../express");
 
 var UserModel = require("../models/user/user.model.server");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 
 app.post("/api/user", createUser);
 app.get("/api/user", getUsers);
 app.get("/api/user/:userId", findUserById);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
+app.post  ('/api/assignment/login', passport.authenticate('local'), login);
+app.get('/api/assignment/loggedin', loggedin);
+app.post('/api/assignment/logout', logout);
+app.post('/api/assignment/register', register)
+
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+passport.use(new LocalStrategy(localStrategy));
+
+function login(req, res) {
+    res.json(req.user);
+}
+
+function loggedin(req, res) {
+    if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
+function logout(req, res) {
+    req.logout();
+    res.sendStatus(200);
+}
+
+function register(req, res) {
+    var user = req.body;
+    UserModel
+        .createUser(user)
+        .then(
+            function (user) {
+                req
+                    .login(user, function (status) {
+                        res.send(status);
+                    })
+            }
+        )
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    UserModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+}
+
+function localStrategy(username, password, done) {
+    UserModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if(user) {
+                    if(user.username === username && user.password === password) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+                }
+                return done(null, false);
+            },
+            function(err) {
+                if (err) { return done(err, false); }
+            }
+        );
+}
+
+////////////////////////////////////////USER MANAGEMENT
 
 function createUser(req, res) {
     var user = req.body;

@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('WidgetNewController', WidgetNewController);
 
-    function WidgetNewController($routeParams, $location, WidgetService) {
+    function WidgetNewController($routeParams, $location, WidgetService, currentUser) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
 
@@ -62,7 +62,7 @@
                 .createWidget(model.pageId, widget)
                 .then(
                     function (widget) {
-                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id);
+                        $location.url("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id);
                     },
                     function (err) {
                         model.error = "cannot create new widget!"

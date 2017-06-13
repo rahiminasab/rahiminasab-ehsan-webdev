@@ -14,8 +14,58 @@
             findUserByUsername:     findUserByUsername,
             findUserByCredentials:  findUserByCredentials,
             updateUser:             updateUser,
-            deleteUser:             deleteUser
+            deleteUser:             deleteUser,
+            login:                  login,
+            loggedin:               loggedin,
+            logout:                 logout,
+            register:               register
         };
+
+        function login(username, password) {
+            var credentials = {
+                username: username,
+                password: password
+            };
+
+            return $http
+                .post('/api/assignment/login', credentials)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                );
+        }
+
+        function loggedin() {
+            var url = "/api/assignment/loggedin";
+            return $http.get(url)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
+        }
+
+        function logout() {
+            var url = "/api/assignment/logout";
+            return $http.post(url)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
+        }
+
+        function register(user) {
+            var url = "/api/assignment/register";
+            return $http
+                .post(url, user)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
+        }
 
         function createUser(user) {
 

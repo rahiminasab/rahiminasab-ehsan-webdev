@@ -6,11 +6,11 @@
         .module('WebAppMaker')
         .controller('PageEditController', PageEditController);
 
-    function PageEditController($location, $routeParams, PageService) {
+    function PageEditController($location, $routeParams, PageService, currentUser) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
 
@@ -46,10 +46,10 @@
                 .updatePage(model.pageId, model.page)
                 .then(
                     function (success) {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                        $location.url('/website/' + model.websiteId + '/page');
                     },
                     function (err) {
-                        model.error = "canot update the page!"
+                        model.error = "cannot update the page!"
                     }
                 );
 
@@ -60,7 +60,7 @@
                 .deletePage(model.pageId)
                 .then(
                     function (deleted) {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                        $location.url('/website/' + model.websiteId + '/page');
                     },
                     function (err) {
                         model.error = "cannot delete the page!"

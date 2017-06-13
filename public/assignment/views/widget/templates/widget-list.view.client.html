@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <p class="navbar-text pull-left">
                 <a class="navbar-link"
-                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                   href="#!/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left pull-left"></span>
                 </a>
             </p>
@@ -12,7 +12,7 @@
                 Widgets
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -23,7 +23,7 @@
 <div wbdv-sortable class="container-fluid ">
     <div  ng-repeat="widget in model.widgets" class="wd-widget">
         <div class="wd-widget-toolbar">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+            <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>

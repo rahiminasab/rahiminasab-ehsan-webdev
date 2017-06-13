@@ -15,10 +15,10 @@
         function login(username, password) {
 
             UserService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(
                     function (user) {
-                        $location.url('/user/' + user._id);
+                        $location.url('/profile');
                     },
                     function (err) {
                         model.message = "user " + username + " not found!";

@@ -6,26 +6,18 @@
         .module('WebAppMaker')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($location, $routeParams, UserService) {
+    function ProfileController($location, UserService, currentUser) {
 
         var model = this;
 
         model.updateProfile = updateProfile;
         model.unregister = unregister;
+        model.logout = logout;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//$routeParams['userId'];
 
         function init() {
-            UserService
-                .findUserById(model.userId)
-                .then(
-                    function (user) {
-                        model.user = user;
-                    },
-                    function (err) {
-                        model.error = "Unknown user request!"
-                    }
-                )
+            model.user = currentUser;
         }
 
         init();
@@ -40,6 +32,17 @@
                     function(err){
                         model.error = "The profile cannot be updated!"
                     });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $location.url('/login');
+                    }
+
+        )
         }
 
         function unregister() {

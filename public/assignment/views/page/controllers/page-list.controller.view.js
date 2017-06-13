@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('PageListController', PageListController);
 
-    function PageListController($routeParams, PageService) {
+    function PageListController($routeParams, PageService, currentUser) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
 
         function init() {

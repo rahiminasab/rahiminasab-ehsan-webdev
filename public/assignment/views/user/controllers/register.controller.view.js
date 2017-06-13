@@ -26,14 +26,16 @@
                             model.message = "user " + username + " already exists!";
                         },
                         function (notFound) {
-                            var newUser = {username: username, password: password1};
+                            var newUser = {
+                                username: username,
+                                password: password1
+                            };
                             return UserService
-                                .createUser(newUser);
+                                .register(newUser);
                         }
-                    )
-                    .then(
+                    ).then(
                         function (user) {
-                            $location.url('/user/' + user._id);
+                            $location.url('/profile');
                         },
                         function (err) {
                             model.message = "cannot register user " + username;
