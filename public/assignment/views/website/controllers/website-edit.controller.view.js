@@ -41,6 +41,10 @@
         model.deleteWebsite = deleteWebsite;
 
         function updateWebsite() {
+            if(typeof model.website === 'undefined' || !isValidString(model.website.name)) {
+                model.error = 'website name cannot be empty!';
+                return;
+            }
             WebsiteService
                 .updateWebsite(model.websiteId, model.website)
                 .then(
@@ -65,6 +69,10 @@
                         model.error = "cannot delete the website!"
                     }
                 );
+        }
+
+        function isValidString(s) {
+            return (s !== null && s !== '' && typeof s !== 'undefined');
         }
     }
 

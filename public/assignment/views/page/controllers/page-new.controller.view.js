@@ -29,6 +29,10 @@
         model.createPage = createPage;
 
         function createPage(page) {
+            if(page === null || typeof page === 'undefined' || !isValidString(page.name)) {
+                model.error = 'page name cannot be empty!';
+                return;
+            }
             PageService
                 .createPage(model.websiteId, page)
                 .then(
@@ -40,6 +44,10 @@
                     }
                 );
 
+        }
+
+        function isValidString(s) {
+            return (s !== null && s !== '' && typeof s !== 'undefined');
         }
     }
 })();

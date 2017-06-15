@@ -13,12 +13,15 @@
             findUserById:           findUserById,
             findUserByUsername:     findUserByUsername,
             findUserByCredentials:  findUserByCredentials,
+            findAllUsers:           findAllUsers,
             updateUser:             updateUser,
             deleteUser:             deleteUser,
             login:                  login,
             loggedin:               loggedin,
             logout:                 logout,
-            register:               register
+            register:               register,
+            unregister:             unregister,
+            checkAdmin:             checkAdmin
         };
 
         function login(username, password) {
@@ -108,6 +111,15 @@
                 );
         }
 
+        function findAllUsers() {
+            return $http.get("/api/user")
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
+        }
+
         function updateUser(userId, user) {
             return $http
                 .put("/api/user/" + userId, user)
@@ -132,6 +144,27 @@
                         return false;
                     }
                 );
+        }
+
+        function unregister() {
+            var url = "/api/assignment/unregister";
+            return $http
+                .post(url)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
+        }
+
+        function checkAdmin() {
+            var url = "/api/assignment/checkAdmin";
+            return $http.get(url)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                )
         }
     }
 })();

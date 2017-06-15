@@ -130,7 +130,7 @@ function uploadImage(req, res) {
             }
         ).then(
             function (ok) {
-                var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                var callbackUrl   = "/assignment/#!/website/"+websiteId + "/page/" + pageId + "/widget/" + widgetId;
                 res.redirect(callbackUrl);
             }
         );

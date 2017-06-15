@@ -2,6 +2,7 @@
     <h1>Login</h1>
 
     <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
+    <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
     <label for="username">Username</label>
     <input ng-model="username"
            type="text"
@@ -18,6 +19,11 @@
 
     <a ng-click="model.login(username, password)"
        class="btn btn-primary btn-block">Login</a>
+
+    <a href="/auth/google" class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
+        Google
+    </a>
 
     <a class="btn btn-success btn-block"
        href="#!/register">Register</a>

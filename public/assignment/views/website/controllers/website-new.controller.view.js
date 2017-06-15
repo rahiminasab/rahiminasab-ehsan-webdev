@@ -27,9 +27,14 @@
 
         model.createWebsite = createWebsite;
 
-        function createWebsite(website) {
+        function createWebsite() {
+
+            if(typeof model.website === 'undefined' || !isValidString(model.website.name)) {
+                model.error = 'website name cannot be empty!';
+                return;
+            }
             WebsiteService
-                .createWebsite(model.userId, website)
+                .createWebsite(model.userId, model.website)
                 .then(
                     function (website) {
                         model.message = "website " + website.name + " has been created successfully";
@@ -39,6 +44,10 @@
                         model.error = "website creation failed!"
                     }
                 );
+        }
+
+        function isValidString(s) {
+            return (s !== null && s !== '' && typeof s !== 'undefined');
         }
 
     }

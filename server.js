@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
-    secret: "1322323",//process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -21,7 +21,9 @@ app.use(app.express.static(__dirname + '/public'));
 
 //require ("./test/app.js")(app);
 
-require("./assignment/app.js");
+require("./assignment/app");
+
+//require("./project/app");
 
 
 var port = process.env.PORT || 3000;

@@ -13,6 +13,7 @@
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
         model.widgetEditUrl = "";
+        model.redirectToWidgetList = redirectToWidgetList;
 
         function init() {
             WidgetService
@@ -33,6 +34,12 @@
         model.deleteWidget = deleteWidget;
 
         function updateWidget(widgetId, widget) {
+
+            if(widget === null || typeof widget === 'undefined' || !isValidString(widget.name)) {
+                model.error = 'widget name cannot be empty!';
+                return;
+            }
+
             WidgetService
                 .updateWidget(widgetId, widget)
                 .then(
@@ -47,6 +54,7 @@
         }
 
         function deleteWidget(widgetId) {
+
             WidgetService
                 .deleteWidget(widgetId)
                 .then(
@@ -58,6 +66,18 @@
                     }
                 );
 
+        }
+
+        function redirectToWidgetList() {
+            if(!isValidString(model.widget.name)) {
+                deleteWidget(model.widgetId);
+            } else {
+                $location.url("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            }
+        }
+
+        function isValidString(s) {
+            return (s !== null && s !== '' && typeof s !== 'undefined');
         }
 
     }

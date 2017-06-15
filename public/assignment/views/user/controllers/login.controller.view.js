@@ -14,6 +14,17 @@
 
         function login(username, password) {
 
+            if(username === null || username ==='' || typeof username === 'undefined') {
+                model.message = null;
+                model.error = 'username cannot be empty!';
+                return;
+            }
+            if(password === null || password ==='' || typeof password === 'undefined') {
+                model.message = null;
+                model.error = 'password cannot be empty!';
+                return;
+            }
+
             UserService
                 .login(username, password)
                 .then(
@@ -21,6 +32,7 @@
                         $location.url('/profile');
                     },
                     function (err) {
+                        model.error = null;
                         model.message = "user " + username + " not found!";
                     }
                 );

@@ -15,10 +15,13 @@ UserModel.updateUser = updateUser;
 UserModel.removeUser = removeUser;
 UserModel.addWebsite = addWebsite;
 UserModel.removeWebsite = removeWebsite;
+//UserModel.findUserByFacebookId = findUserByFacebookId;
+UserModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = UserModel;
 
 function createUser(user) {
+
     return UserModel
         .create(user);
 }
@@ -69,4 +72,12 @@ function removeWebsite(userId, websiteId) {
                 return user.save();
             }
         )
+}
+
+/*function findUserByFacebookId(facebookId) {
+    return User.findOne({'facebook.id': facebookId});
+}*/
+
+function findUserByGoogleId(googleId) {
+    return UserModel.findOne({'google.id': googleId});
 }

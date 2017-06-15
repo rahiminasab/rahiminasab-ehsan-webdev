@@ -42,6 +42,10 @@
         model.deletePage = deletePage;
 
         function updatePage() {
+            if(model.page === null || typeof model.page === 'undefined' || !isValidString(model.page.name)) {
+                model.error = 'page name cannot be empty!';
+                return;
+            }
             PageService
                 .updatePage(model.pageId, model.page)
                 .then(
@@ -67,6 +71,10 @@
                     }
                 );
 
+        }
+
+        function isValidString(s) {
+            return (s !== null && s !== '' && typeof s !== 'undefined');
         }
 
     }

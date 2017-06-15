@@ -14,6 +14,7 @@
 
         function register(username, password1, password2) {
 
+            var error = false;
             if(username === null || username ==='' || typeof username === 'undefined') {
                 model.message = 'username is required!';
                 return;
@@ -24,6 +25,7 @@
                     .then(
                         function (user) {
                             model.message = "user " + username + " already exists!";
+                            error = true;
                         },
                         function (notFound) {
                             var newUser = {
@@ -35,7 +37,8 @@
                         }
                     ).then(
                         function (user) {
-                            $location.url('/profile');
+                            if(!error)
+                                $location.url('/profile');
                         },
                         function (err) {
                             model.message = "cannot register user " + username;
