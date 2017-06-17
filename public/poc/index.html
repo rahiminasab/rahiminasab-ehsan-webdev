@@ -11,10 +11,35 @@
 
     <div ng-controller="teleFeedController as model"
          class="container-fluid">
-        <button ng-click="model.getUpdates()" class="btn btn-primary btn-block">
-            getUps
-        </button>
-        {{model.messages}}
+        <div class="row">
+            <div class="col-xs-4">
+                <h2>Search</h2>
+                <input ng-model="title" class="form-control"/>
+                <button ng-click="model.searchChannelsByTitle(title)" class="btn btn-primary btn-block">
+                    Search
+                </button>
+                <h2>Results</h2>
+                <ul class="list-group">
+                    <li ng-click="model.retrievePostsForChannel(channel)" ng-repeat="channel in model.channels"
+                        class="list-group-item">
+                        <b>{{channel.title}}</b> by {{channel.author}}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-8">
+                <h2>{{model.channel.title}}</h2>
+                <h3>by {{model.channel.author}}</h3>
+                <h3>Posts</h3>
+                <ul>
+                    <li ng-repeat="post in model.posts">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{post.telegram_creation_date | date:'yyyy-MM-dd HH:mm:ss Z'}}</div>
+                            <div class="panel-body">{{post.text}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </body>

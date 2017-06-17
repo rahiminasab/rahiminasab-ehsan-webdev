@@ -9,8 +9,8 @@ var ChannelPostSchema = mongoose.Schema({
     telegram_creation_date: Number,
     text: String,
     caption: String,
-    like: Number,
-    dislike: Number,
+    like: {type: Number, default: 0},
+    dislike: {type: Number, default: 0},
     photo: [{file_id: String, file_size: Number, width: Number, height: Number}],
     importDate: {type: Date, default: Date.now()}
 

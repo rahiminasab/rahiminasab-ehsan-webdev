@@ -7,6 +7,7 @@ var ChannelPostModel = mongoose.model('ChannelPostModel', ChannelPostSchema);
 
 ChannelPostModel.createPost             = createPost;
 ChannelPostModel.findPostById           = findPostById;
+ChannelPostModel.findAllPosts           = findAllPosts;
 ChannelPostModel.findAllChannelPosts    = findAllChannelPosts;
 ChannelPostModel.findChannelPostsByText = findChannelPostsByText;
 ChannelPostModel.updateChannelPost      = updateChannelPost;
@@ -22,6 +23,11 @@ function createPost (postObj) {
 function findPostById(postId) {
     return ChannelPostModel
         .findById(postId);
+}
+
+function findAllPosts() {
+    return ChannelPostModel
+        .find();
 }
 
 function findAllChannelPosts(channelId) {

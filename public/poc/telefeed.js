@@ -8,20 +8,36 @@
 
     function teleFeedController($http) {
         var model = this;
-        model.getUpdates = getUpdates;
+        model.searchChannelsByTitle = searchChannelsByTitle;
+        model.retrievePostsForChannel = retrievePostsForChannel;
 
 
-        function getUpdates() {
+        function searchChannelsByTitle(titleKeyword) {
             $http
-                .get("https://api.telegram.org/bot373205519:AAGhSpu9yi4QmkB_HgY1LedhnNDmxQkxxWc/getUpdates")
+                .get("/api/telefeed/channel?title="+titleKeyword)
                 .then(
                     function (res) {
-                        model.messages =  res.data;
+                        model.channels =  res.data;
                     },
                     function (err) {
-                        console.log("err: " + err);
+                        console.log( err);
                     }
                 );
+        }
+
+        function retrievePostsForChannel(channel) {
+            model.channel = channel;
+
+            $http
+                .get("/api/telefeed/channel/" + channel._id + "/post")
+                .then(
+                    function (res) {
+                        model.posts = res.data;
+                    },
+                    function (err) {
+                        console.log(err);
+                    }
+                )
         }
     }
 

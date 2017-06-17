@@ -92,8 +92,11 @@ function register(req, res) {
         .then(
             function (user) {
                 req
-                    .login(user, function (status) {
-                        res.send(status);
+                    .login(user, function (err) {
+                        if(err)
+                            res.sendStatus(401);
+                        else
+                            res.sendStatus(200);
                     })
             }
         )
@@ -104,9 +107,8 @@ function unregister(req, res) {
         .removeUser(req.user._id)
         .then(
             function (user) {
-                req.logout(user, function (status) {
-                        res.send(status);
-                    })
+                req.logout();
+                res.sendStatus(200);
             }
         )
 }
@@ -235,7 +237,7 @@ function findUserByUsername(req, res) {
         .then(
             function (user) {
                 if(user)
-                    res.send(user);
+                    res.json(user);
                 else
                     res.sendStatus(404);
             }
@@ -297,7 +299,6 @@ function updateUser(req, res) {
         .updateUser(userId, user)
         .then(
             function (success) {
-                console.log(success);
                 if(success) {
                     res.sendStatus(200);
                 }
@@ -305,7 +306,7 @@ function updateUser(req, res) {
                     res.sendStatus(500);
                 }
             }, function (err) {
-                console.log("err is: " + err)
+                res.sendStatus(500);
             }
         );
 }

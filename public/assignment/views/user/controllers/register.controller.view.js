@@ -37,8 +37,10 @@
                         }
                     ).then(
                         function (user) {
-                            if(!error)
+                            if(!error) {
                                 $location.url('/profile');
+                            }
+
                         },
                         function (err) {
                             model.message = "cannot register user " + username;

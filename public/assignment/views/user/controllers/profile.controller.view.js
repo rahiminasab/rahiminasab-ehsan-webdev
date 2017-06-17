@@ -50,7 +50,7 @@
                 .unregister()
                 .then(
                     function (success) {
-                        $location.url("/login")
+                        $location.url("/login");
                     },
                     function (err) {
                         model.error = "cannot unregister user!"
