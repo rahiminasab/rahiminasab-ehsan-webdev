@@ -23,7 +23,7 @@ require ("./dbcon");
 
 require("./assignment/app");
 
-require("./project/app");
+require("./telefeed/app");
 
 
 var port = process.env.PORT || 3000;
