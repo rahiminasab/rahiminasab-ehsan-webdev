@@ -8,9 +8,9 @@ var PostModel = require('../models/post/post.model.server');
 
 app.get('/api/telefeed/post', findAllPosts);
 app.get('/api/telefeed/channel/:channelId/post', getChannelPosts);
-app.get('/api/telefeed/channel/:channelId/post/:postId', findPostById);
-app.put('/api/telefeed/channel/:channelId/post/:postId', updatePost);
-app.delete('/api/telefeed/channel/:channelId/post/:postId', deletePost);
+app.get('/api/telefeed/post/:postId', findPostById);
+app.put('/api/telefeed/post/:postId', updatePost);
+app.delete('/api/telefeed/post/:postId', deletePost);
 
 function findAllPosts(req, res) {
     var queryString = req.query['query'];
@@ -21,7 +21,20 @@ function findAllPosts(req, res) {
 }
 
 function queryPosts(req, res) {
-
+    var queryString = req.query['query'];
+    PostModel
+        .findChannelPostsByText(queryString)
+        .then(
+            function (posts) {
+                if(posts)
+                    res.json(posts);
+                else
+                    res.sendStatus(404);
+            },
+            function (err) {
+                res.sendStatus(500);
+            }
+        )
 }
 
 function getAllPosts(req, res) {
