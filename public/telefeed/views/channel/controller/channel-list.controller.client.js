@@ -76,7 +76,7 @@
         }
 
         function loadPost(postId) {
-            $location.url('/post/' + postId);
+            $location.url('/channel/' + model.channel._id +'/post/' + postId);
         }
 
         function getDate(longFormat) {
