@@ -1,0 +1,59 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
+<div class="container-fluid">
+    <div class="row channel-list-box">
+        <div class="col-xs-12 col-md-4 channel-box">
+            <ul class="list-group">
+                <li class="list-group-item channel-item"
+                    ng-repeat="channel in model.channels"
+                    ng-click="model.loadPosts(channel)">
+                    <div class="channel-logo">
+                        <span><i class="fa fa-bullhorn"></i></span>
+                    </div>
+                    <div class="channel-title">{{channel.title}}</div>
+                    <div class="channel-star-icon"
+                         ng-style="{'color': model.channelFavIconMap[channel._id][0]}">
+                        <span class="pull-right"
+                              ng-click="model.bookmarkChannel(channel._id)"><i class="{{model.channelFavIconMap[channel._id][1]}}"></i></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-8 hidden-xs hidden-sm posts-box " style="text-align: center">
+
+            <div ng-show="!model.posts" class="posts-box-empty-message">
+                Please select a Channel to start
+            </div>
+            <div class="row" ng-show="model.posts">
+                <div class="col-xs-12 channel-info-row">
+                    <div class="channel-info-title">
+                        {{model.channel.title}}
+                        <span class="channel-info-author">by {{model.channel.author}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <ul class="posts-list">
+                    <li class="post-item"
+                        ng-repeat="post in model.posts">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                {{model.getDate(post.telegram_creation_date) | date:'yyyy-MM-dd'}}
+                            </div>
+                            <div class="panel-body">
+                                <div>
+                                    {{post.text}}
+                                </div>
+                                <div class="post-item-comment-icon"
+                                     ng-click="model.loadPost(post._id)">
+                                    <span class="pull-right"><i class="fa fa-comment-o"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

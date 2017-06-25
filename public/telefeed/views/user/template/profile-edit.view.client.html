@@ -1,0 +1,88 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
+<div class="container-fluid profile-edit-form">
+
+    <div class="row">
+        <div class="col-xs-12 profile-edit-photo">
+            <div class="useravatar">
+                <img alt="" src="{{model.getUserImageUrl()}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="username" class="cols-sm-2 control-label">Username</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"
+                       class="form-control"
+                       ng-model="model.user.username"
+                       disabled
+                       id="username"  placeholder="Your Username"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="cols-sm-2 control-label">Name</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"
+                       class="form-control"
+                       ng-model="model.user.fullname"
+                       id="name"  placeholder="Your Name"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="cols-sm-2 control-label">Email</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="email"
+                       class="form-control"
+                       ng-model="model.user.email"
+                       id="email"  placeholder="Your Email"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone" class="cols-sm-2 control-label required">Mobile</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                <input type="number"
+                       class="form-control"
+                       ng-model="model.user.phone"
+                       id="phone"  placeholder="Your Mobile"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="uploadForm" class="cols-sm-2 control-label required">Profile Picture</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                <form id="uploadForm"
+                      action="/api/telefeed/upload/pp"
+                      method="post"
+                      enctype="multipart/form-data">
+                    <input  name="pic"    type="file" class="form-control"/>
+                    <input  name="photo_url"     value="{{model.user.photo_url}}" style="display: none"/>
+                    <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group ">
+        <button type="button"
+                class="btn btn-success btn-lg btn-block login-button"
+                ng-click="model.updateUser(model.user)">Update</button>
+        <a href="#!/profile"
+           class="btn btn-danger btn-lg btn-block">Cancel</a>
+    </div>
+</div>

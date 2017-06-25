@@ -8,6 +8,7 @@ var ChannelModel = mongoose.model('ChannelModel', ChannelSchema);
 ChannelModel.createChannel            = createChannel;
 ChannelModel.createChannelIfNotExists = createChannelIfNotExists;
 ChannelModel.findChannelById          = findChannelById;
+ChannelModel.getChannelsByIds         = getChannelsByIds;
 ChannelModel.findAllChannels          = findAllChannels;
 ChannelModel.findChannelsByTitle      = findChannelsByTitle;
 ChannelModel.updateChannel            = updateChannel;
@@ -32,6 +33,11 @@ function createChannelIfNotExists(channelObj) {
 function findChannelById(channelId) {
     return ChannelModel
         .findById(channelId);
+}
+
+function getChannelsByIds(channelIds) {
+    return ChannelModel
+        .find({_id: { $in: channelIds}});
 }
 
 function findAllChannels() {

@@ -21,7 +21,7 @@ app.use(app.express.static(__dirname + '/public'));
 
 require ("./dbcon");
 
-require("./assignment/app");
+//require("./assignment/app");
 
 require("./telefeed/app");
 

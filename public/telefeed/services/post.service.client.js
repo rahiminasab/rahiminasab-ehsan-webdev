@@ -18,7 +18,7 @@
             var url = 'api/telefeed/post';
             if(searchTerm)
                 url += '?query=' + searchTerm;
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -29,7 +29,7 @@
 
         function getChannelPosts(channelId) {
             var url = '/api/telefeed/channel/' + channelId + '/post';
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -40,7 +40,7 @@
 
         function findPostById(postId) {
             var url = '/api/telefeed/post/' + postId;
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -51,7 +51,7 @@
 
         function updatePost(postId, post) {
             var url = '/api/telefeed/post/' + postId;
-            $http
+            return $http
                 .put(url, post)
                 .then(
                     function (response) {
@@ -62,7 +62,7 @@
 
         function deletePost(postId) {
             var url = '/api/telefeed/post/' + postId;
-            $http
+            return $http
                 .delete(url)
                 .then(
                     function (response) {

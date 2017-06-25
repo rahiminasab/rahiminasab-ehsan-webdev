@@ -21,6 +21,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "q": "^1.5.0",
+    "responsive-toolkit": "^2.6.3",
     "textangular": "^1.5.16"
   },
   "devDependencies": {},

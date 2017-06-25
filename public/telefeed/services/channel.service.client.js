@@ -10,6 +10,7 @@
 
         this.findChannels    = findChannels;
         this.findChannelById = findChannelById;
+        this.getChannelsByIds = getChannelsByIds;
         this.updateChannel   = updateChannel;
         this.deleteChannel   = deleteChannel;
 
@@ -17,7 +18,7 @@
             var url = '/api/telefeed/channel';
             if(searchTerm)
                 url += '?title=' + searchTerm;
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -28,8 +29,19 @@
 
         function findChannelById(channelId) {
             var url = '/api/telefeed/channel/' + channelId;
-            $http
+            return $http
                 .get(url)
+                .then(
+                    function (response) {
+                        return response.data;
+                    }
+                )
+        }
+
+        function getChannelsByIds(channelIds) {
+            var url = '/api/telefeed/channel/find';
+            return $http
+                .post(url, channelIds)
                 .then(
                     function (response) {
                         return response.data;
@@ -39,7 +51,7 @@
 
         function updateChannel(channelId, channel) {
             var url = '/api/telefeed/channel/' + channelId;
-            $http
+            return $http
                 .put(url, channel)
                 .then(
                     function (response) {
@@ -50,7 +62,7 @@
 
         function deleteChannel(channelId) {
             var url = '/api/telefeed/channel/' + channelId;
-            $http
+            return $http
                 .delete(url)
                 .then(
                     function (response) {

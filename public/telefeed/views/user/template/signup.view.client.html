@@ -1,0 +1,71 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
+
+<div class="container-fluid signup-form">
+
+    <div class="form-group">
+        <label for="username" class="cols-sm-2 control-label">Username</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"
+                       class="form-control"
+                       ng-model="model.user.username"
+                       id="username"  placeholder="Your Username"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="cols-sm-2 control-label">Password</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-secret fa" aria-hidden="true"></i></span>
+                <input type="password"
+                       class="form-control"
+                       ng-model="model.user.password"
+                       id="password"  placeholder="Your Password"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="cols-sm-2 control-label">Name</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"
+                       class="form-control"
+                       ng-model="model.user.fullname"
+                       id="name"  placeholder="Your Name"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="cols-sm-2 control-label">Email</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="email"
+                       class="form-control"
+                       ng-model="model.user.email"
+                       id="email"  placeholder="Your Email"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone" class="cols-sm-2 control-label required">Mobile</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                <input type="number"
+                       class="form-control"
+                       ng-model="model.user.phone"
+                       id="phone"  placeholder="Your Mobile"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group ">
+        <button type="button"
+                class="btn btn-primary btn-lg btn-block login-button"
+                ng-click="model.signUp(model.user)">SignUp</button>
+    </div>
+</div>

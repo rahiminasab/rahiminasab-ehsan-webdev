@@ -1,0 +1,17 @@
+<ul class="list-group">
+    <li class="list-group-item following-item"
+        ng-repeat="user in model.followingUsers">
+        <div class="channel-logo">
+            <span><i class="fa fa-user-circle-o"></i></span>
+        </div>
+        <div class="channel-title"
+             ng-click="model.loadUser(user.username)">{{user.fullname}}</div>
+
+        <div ng-show="!model.foreignView && !model.anonymView"
+             class="following-bookmark-icon-in-fav-list">
+            <span class="pull-right"
+                  ng-click="model.unfollow(user._id, user.username)"><i class="fa fa-bookmark"></i></span>
+        </div>
+
+    </li>
+</ul>

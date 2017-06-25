@@ -1,0 +1,58 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-12 card">
+            <div class="useravatar">
+                <img alt="" src="{{model.getUserImageUrl()}}">
+            </div>
+            <div class="card-info">
+                <span class="card-title">{{model.user.fullname}}</span>
+            </div>
+            <div ng-show="!model.foreignView && !model.anonymView" class="profile-edit-icon">
+                <a href="#!/profile/edit">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </div>
+            <div ng-show="!model.anonymView && model.foreignView" class="profile-bookmark-icon">
+                <a ng-click="model.follow()" >
+                    <span><i id="follow-icon" class="fa fa-bookmark-o"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 profile-btn-row">
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button"
+                            id="favorites-btn"
+                            class="btn btn-primary"
+                            ng-click="model.loadFavs()">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <div class="hidden-xs">Favorite Channels</div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button"
+                            id="following-btn"
+                            class="btn btn-default"
+                            ng-click="model.loadFollowing()">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <div class="hidden-xs">Following</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 profile-content-row">
+            <div ng-include="'views/user/template/favorite-channels-list.view.client.html'" ng-show="model.showFavorites"></div>
+            <div ng-include="'views/user/template/following-list.view.client.html'" ng-show="!model.showFavorites"></div>
+        </div>
+    </div>
+
+</div>

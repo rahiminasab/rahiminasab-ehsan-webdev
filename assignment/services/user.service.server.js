@@ -7,7 +7,6 @@ var UserModel = require("../models/user/user.model.server");
 var bcrypt = require("bcrypt-nodejs");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-//var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
@@ -24,12 +23,6 @@ app.post('/api/assignment/logout', logout);
 app.post('/api/assignment/register', register);
 app.post('/api/assignment/unregister', unregister);
 
-/*app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/assignment/#!/profile',
-        failureRedirect: '/assignment/#!/login'
-    }));*/
 
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get('/auth/google/callback',
@@ -43,18 +36,12 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 passport.use(new LocalStrategy(localStrategy));
 
-/*var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-};*/
 var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
 
-//passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
@@ -148,13 +135,6 @@ function localStrategy(username, password, done) {
         );
 }
 
-/*function facebookStrategy(token, refreshToken, profile, done) {
-    UserModel
-        .findUserByFacebookId(profile.id)
-        .then(
-
-        );
-}*/
 function googleStrategy(token, refreshToken, profile, done) {
     UserModel
         .findUserByGoogleId(profile.id)

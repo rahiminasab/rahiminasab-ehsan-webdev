@@ -8,16 +8,17 @@
 
     function FeedbackService($http) {
 
-        this.createFeedback = createFeedback;
+        this.createFeedbackForPost = createFeedbackForPost;
         this.getFeedbackForPost    = getFeedbackForPost;
         this.getFeedbackById = getFeedbackById;
+        this.createFeedbackForFeedback = createFeedbackForFeedback;
         this.getFeedbackForFeedback = getFeedbackForFeedback;
         this.updateFeedback   = updateFeedback;
         this.deleteFeedback   = deleteFeedback;
 
-        function createFeedback(postId, feedback) {
-            var url = '/api/telefeed/post/' + postId + '/feedback/new';
-            $http
+        function createFeedbackForPost(postId, feedback) {
+            var url = '/api/telefeed/post/' + postId + '/feedback';
+            return $http
                 .post(url, feedback)
                 .then(
                     function (response) {
@@ -28,7 +29,7 @@
 
         function getFeedbackForPost(postId) {
             var url = '/api/telefeed/post/' + postId + '/feedback';
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -39,8 +40,19 @@
 
         function getFeedbackById(feedbackId) {
             var url = '/api/telefeed/feedback/' + feedbackId;
-            $http
+            return $http
                 .get(url)
+                .then(
+                    function (response) {
+                        return response.data;
+                    }
+                );
+        }
+
+        function createFeedbackForFeedback(postId, parentFeedbackId, feedback) {
+            var url = '/api/telefeed/post/'+ postId +'/feedback/' + parentFeedbackId + '/feedback';
+            return $http
+                .post(url, feedback)
                 .then(
                     function (response) {
                         return response.data;
@@ -50,7 +62,7 @@
 
         function getFeedbackForFeedback(feedbackId) {
             var url = '/api/telefeed/feedback/' + feedbackId + '/feedback';
-            $http
+            return $http
                 .get(url)
                 .then(
                     function (response) {
@@ -61,7 +73,7 @@
 
         function updateFeedback(feedbackId, feedback) {
             var url = '/api/telefeed/feedback/' + feedbackId;
-            $http
+            return $http
                 .put(url, feedback)
                 .then(
                     function (response) {
@@ -72,7 +84,7 @@
 
         function deleteFeedback(feedbackId) {
             var url = '/api/telefeed/feedback/' + feedbackId;
-            $http
+            return $http
                 .delete(url)
                 .then(
                     function (response) {

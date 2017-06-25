@@ -1,0 +1,15 @@
+<ul class="list-group">
+    <li class="list-group-item channel-item"
+        ng-repeat="channel in model.favoriteChannels">
+        <div class="channel-logo">
+            <span><i class="fa fa-bullhorn"></i></span>
+        </div>
+        <div class="channel-title"
+             ng-click="model.loadChannel(channel._id)">{{channel.title}}<span class="channel-info-author-in-list"> by {{channel.author}}</span></div>
+        <div ng-show="!model.foreignView && !model.anonymView"
+             class="channel-star-icon-in-fav-list">
+                        <span class="pull-right"
+                              ng-click="model.unbookmarkChannel(channel._id)"><i class="fa fa-star"></i></span>
+        </div>
+    </li>
+</ul>

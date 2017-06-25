@@ -1,0 +1,36 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
+<div class="container-fluid posts-box posts-box-full">
+    <div class="row" ng-show="model.posts">
+        <div class="col-xs-12 channel-info-row-full">
+            <div class="channel-info-title">
+                {{model.channel.title}}
+                <span class="channel-info-author">by {{model.channel.author}}</span>
+            </div>
+            <div ng-show="!model.anonymView"
+                 class="channel-star-icon-in-full-row">
+                        <span class="pull-right"
+                              ng-click="model.bookmarkChannel(model.channel._id)"><i id="channel-fav-icon-in-full-row" class="fa fa-star-o"></i></span>
+            </div>
+        </div>
+    </div>
+    <ul class="posts-list-full">
+        <li class="post-item"
+            ng-repeat="post in model.posts">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{model.getDate(post.telegram_creation_date) | date:'yyyy-MM-dd'}}
+                </div>
+                <div class="panel-body">
+                    <div>
+                        {{post.text}}
+                    </div>
+                    <div class="post-item-comment-icon"
+                         ng-click="model.loadPost(post._id)">
+                        <span class="pull-right"><i class="fa fa-comment-o"></i></span>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>

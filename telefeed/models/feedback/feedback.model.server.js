@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var FeedbackSchema = require('./feedback.schema.server');
 var FeedbackModel = mongoose.model('FeedbackModel', FeedbackSchema);
 
-FeedbackModel.createFeedback             = createFeedback;
+FeedbackModel.createFeedbackForPost      = createFeedbackForPost;
+FeedbackModel.createFeedbackForFeedback  = createFeedbackForFeedback;
 FeedbackModel.findFeedbackById           = findFeedbackById;
 FeedbackModel.findAllPostFeedback        = findAllPostFeedback;
 FeedbackModel.findAllFeedbackForFeedback = findAllFeedbackForFeedback;
@@ -15,7 +16,17 @@ FeedbackModel.removeFeedback             = removeFeedback;
 
 module.exports = FeedbackModel;
 
-function createFeedback(feedbackObj) {
+function createFeedbackForPost(authorId, postId, feedbackObj) {
+    feedbackObj._author = authorId;
+    feedbackObj._post = postId;
+    return FeedbackModel
+        .create(feedbackObj);
+}
+
+function createFeedbackForFeedback(authorId, postId, parentFeedbackId, feedbackObj) {
+    feedbackObj._author = authorId;
+    feedbackObj._post = postId;
+    feedbackObj._feedback = parentFeedbackId;
     return FeedbackModel
         .create(feedbackObj);
 }

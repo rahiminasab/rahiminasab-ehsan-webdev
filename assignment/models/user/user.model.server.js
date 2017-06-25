@@ -48,7 +48,7 @@ function updateUser(userId, user) {
 }
 
 function removeUser(userId) {
-    return UserModel.remove({_id: userId})
+    return UserModel.remove({_id: userId});
 }
 
 function addWebsite(userId, websiteId) {
