@@ -14,7 +14,6 @@ ChannelModel.findChannelsByTitle      = findChannelsByTitle;
 ChannelModel.updateChannel            = updateChannel;
 ChannelModel.removeChannel            = removeChannel;
 
-onetime();
 module.exports = ChannelModel;
 
 function createChannel(channelObj) {
@@ -23,6 +22,7 @@ function createChannel(channelObj) {
 }
 
 function createChannelIfNotExists(channelObj) {
+    channelObj.deleted = false;
     return ChannelModel
         .findOneAndUpdate(
             {telegram_id: channelObj.telegram_id},
@@ -60,9 +60,4 @@ function updateChannel(channelId, channelObj) {
 function removeChannel(channelId) {
     return ChannelModel
         .update({_id: channelId}, {$set: {deleted: true}});
-}
-
-function onetime() {
-   return ChannelModel
-        .update({title: 'TestChannel'}, {$set: {deleted: false}});
 }
