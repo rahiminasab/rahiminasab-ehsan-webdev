@@ -23,24 +23,24 @@
                 model.anonymView = true;
             } else {
                 model.userBMChannels = CurrentUser.bookmarked_channels;
-                ChannelService
-                    .findChannelById(channelId)
-                    .then(
-                        function (channel) {
-                            if(channel) {
-                                model.channel = channel;
-                                return PostService
-                                    .getChannelPosts(channelId);
-                            }
-                        }
-                    ).then(
-                        function (posts) {
-                            if(posts) {
-                                model.posts = posts;
-                            }
-                        }
-                    )
             }
+            ChannelService
+                .findChannelById(channelId)
+                .then(
+                    function (channel) {
+                        if(channel) {
+                            model.channel = channel;
+                            return PostService
+                                .getChannelPosts(channelId);
+                        }
+                    }
+                ).then(
+                function (posts) {
+                    if(posts) {
+                        model.posts = posts;
+                    }
+                }
+            )
         }
         init();
 
