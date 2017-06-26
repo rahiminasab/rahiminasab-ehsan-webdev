@@ -13,6 +13,9 @@
             </div>
         </div>
     </div>
+    <div ng-show="model.admin._id" class="admin-panel-selector admin-panel-delete admin-panel-delete-channel">
+        <a ng-click="model.softDelete(model.channel)">Soft Delete</a>
+    </div>
     <ul class="posts-list-full">
         <li class="post-item"
             ng-repeat="post in model.posts">

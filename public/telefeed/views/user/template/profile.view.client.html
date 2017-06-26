@@ -4,6 +4,12 @@
 
     <div class="row">
         <div class="col-xs-12 card">
+            <div ng-show="model.showAdminPanelForUser()" class="admin-panel-selector admin-panel-delete">
+                <a ng-click="model.deleteUser()">Delete</a>
+            </div>
+            <div ng-show="model.showAdminPanelForUser()" class="admin-panel-selector admin-panel-edit">
+                <a href="{{'#!/user/'+model.user.username+'/edit'}}">Edit</a>
+            </div>
             <div class="useravatar">
                 <img alt="" src="{{model.getUserImageUrl()}}">
             </div>

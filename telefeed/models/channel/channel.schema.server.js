@@ -7,7 +7,8 @@ var ChannelSchema = mongoose.Schema({
     telegram_id: String,
     title: String,
     author: String,
-    importDate: {type: Date, default: Date.now()}
+    importDate: {type: Date, default: Date.now()},
+    deleted: {type: Boolean, default: false}
 
 }, {collection: 'project_channel'});
 

@@ -9,6 +9,7 @@ var upload = multer({ dest: __dirname+'/../../../public/telefeed/uploads'});
 app.post('/api/telefeed/upload/pp', upload.single('pic'), uploadProfilePicture);
 
 var UserModel = require('../../models/user/user.model.server');
+initRootUser();
 
 app.post("/api/telefeed/user", createUser);
 app.get("/api/telefeed/user/:userId", findUserById);
@@ -352,6 +353,32 @@ function uploadProfilePicture(req, res) {
             function (ok) {
                 var callbackUrl   = "/telefeed/#!/profile/edit";
                 res.redirect(callbackUrl);
+            }
+        )
+}
+
+function initRootUser() {
+    UserModel
+        .findUserByUsername('admin')
+        .then(
+            function (root) {
+                if(!root) {
+                    console.log('there no root user!');
+                    var rootObj = {
+                        username: 'admin',
+                        password: bcrypt.hashSync('admin'),
+                        fullname: 'Admin Admin',
+                        email: 'root@telefeed.me',
+                        roles: ['USER', 'ADMIN', 'ROOT']
+                    };
+                    UserModel
+                        .createUser(rootObj)
+                        .then(
+                            function (root) {
+                                console.log('root is created!')
+                            }
+                        )
+                }
             }
         )
 }

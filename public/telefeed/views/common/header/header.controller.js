@@ -9,6 +9,7 @@
     function HeaderController($scope, UserService, $location) {
         var model = this;
         model.logout = logout;
+        //model.getProfileNameString = getProfileNameString;
 
         function init() {
             model.bckUrl = $scope.$parent.model.bckUrl;
@@ -33,6 +34,10 @@
 
                 )
         }
+
+        /*function getProfileNameString() {
+            return 'Profile(' +$scope.$parent.model.user.username+')'
+        }*/
     }
 
 })();

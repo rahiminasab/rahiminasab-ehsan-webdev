@@ -1,10 +1,13 @@
 <!--intro and search-->
-<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"  onload="parent=$parent.$parent"></div>
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
 <div class="intro">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
+                <div ng-show="model.admin._id" class="admin-panel-selector">
+                    <a href="#!/admin">Admin Panel</a>
+                </div>
                 <div class="intro-message">
                     <h1>Telegram Feed</h1>
                     <h3>Feedback for Telegram Channels</h3>

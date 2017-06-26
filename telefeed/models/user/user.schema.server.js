@@ -18,8 +18,8 @@ var TeleFeedUserSchema = mongoose.Schema({
         token: String
     },
     roles: [{type: String,
-        defualt: 'USER',
-        enum:['USER', 'ADMIN']}],
+        default: 'USER',
+        enum:['USER', 'ADMIN', 'ROOT']}],
     creationDate: {type: Date, default: Date.now()}
 }, {collection: 'project_user'});
 

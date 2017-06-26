@@ -6,19 +6,22 @@
         .module('TeleFeed')
         .controller('HomeController', HomeController);
 
-    function HomeController($location, ChannelService) {
+    function HomeController($location, ChannelService, Admin) {
         var model = this;
 
         model.searchChannels = searchChannels;
         model.bckUrl = '';
 
         function init() {
+            model.admin = Admin;
         }
         init();
 
 
 
         function searchChannels(searchTerm) {
+            if(!searchTerm)
+                return;
             $location.url('/channel?q=' + searchTerm);
 
         }

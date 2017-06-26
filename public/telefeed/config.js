@@ -13,7 +13,8 @@
                 controller: 'HomeController',
                 controllerAs: 'model',
                 resolve: {
-                    CurrentUser: checkCurrentUser
+                    CurrentUser: checkCurrentUser,
+                    Admin: checkAdmin
                 }
             })
             .when('/signup', {
@@ -37,7 +38,8 @@
                 controller: 'ProfileController',
                 controllerAs: 'model',
                 resolve: {
-                    CurrentUser: checkLoggedIn
+                    CurrentUser: checkLoggedIn,
+                    Admin: checkAdmin
                 }
             })
             .when('/profile/edit', {
@@ -45,7 +47,8 @@
                 controller: 'ProfileEditController',
                 controllerAs: 'model',
                 resolve: {
-                    CurrentUser: checkLoggedIn
+                    CurrentUser: checkLoggedIn,
+                    Admin: checkAdmin
                 }
             })
             .when('/user/:username', {
@@ -53,7 +56,17 @@
                 controller: 'ProfileController',
                 controllerAs: 'model',
                 resolve: {
-                    CurrentUser: checkCurrentUser
+                    CurrentUser: checkCurrentUser,
+                    Admin: checkAdmin
+                }
+            })
+            .when('/user/:username/edit', {
+                templateUrl : 'views/user/template/profile-edit.view.client.html',
+                controller: 'ProfileEditController',
+                controllerAs: 'model',
+                resolve: {
+                    CurrentUser: checkCurrentUser,
+                    Admin: checkAdmin
                 }
             })
             .when('/channel', {
@@ -69,7 +82,8 @@
                 controller: 'PostListController',
                 controllerAs: 'model',
                 resolve: {
-                    CurrentUser: checkCurrentUser
+                    CurrentUser: checkCurrentUser,
+                    Admin: checkAdmin
                 }
             })
             .when('/channel/:channelId/post/:postId', {
@@ -86,6 +100,30 @@
                 controllerAs: 'model',
                 resolve: {
                     CurrentUser: checkCurrentUser
+                }
+            })
+            .when('/admin', {
+                templateUrl: 'views/admin/template/admin.view.client.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+                resolve: {
+                    CurrentUser: adminLoggedIn
+                }
+            })
+            .when('/admin/user', {
+                templateUrl: 'views/admin/template/admin-users.view.client.html',
+                controller: 'AdminUsersController',
+                controllerAs: 'model',
+                resolve: {
+                    CurrentUser: adminLoggedIn
+                }
+            })
+            .when('/admin/channel', {
+                templateUrl: 'views/admin/template/admin-channels.view.client.html',
+                controller: 'AdminChannelsController',
+                controllerAs: 'model',
+                resolve: {
+                    CurrentUser: adminLoggedIn
                 }
             });
 
@@ -130,6 +168,23 @@
                     function (user) {
                         if(user === '0') {
                             deferred.resolve({});
+                        } else {
+                            deferred.resolve(user);
+                        }
+                    }
+                );
+            return deferred.promise;
+        }
+
+        function adminLoggedIn(UserService, $q, $location) {
+            var deferred = $q.defer();
+            UserService
+                .checkAdmin()
+                .then(
+                    function (user) {
+                        if(user === '0') {
+                            deferred.reject();
+                            $location.url('/login');
                         } else {
                             deferred.resolve(user);
                         }

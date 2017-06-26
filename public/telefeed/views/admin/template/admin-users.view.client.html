@@ -1,6 +1,5 @@
-<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"></div>
-
-<div class="container-fluid signup-form">
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model" ></div>
+<div class="container-fluid signup-form" ng-show="model.showNewUserForm">
 
     <div class="form-group">
         <label for="username" class="cols-sm-2 control-label">Username</label>
@@ -9,7 +8,7 @@
                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                 <input type="text"
                        class="form-control"
-                       ng-model="model.user.username"
+                       ng-model="model.newuser.username"
                        id="username"  placeholder="Your Username"/>
             </div>
         </div>
@@ -21,7 +20,7 @@
                 <span class="input-group-addon"><i class="fa fa-user-secret fa" aria-hidden="true"></i></span>
                 <input type="password"
                        class="form-control"
-                       ng-model="model.user.password"
+                       ng-model="model.newuser.password"
                        id="password"  placeholder="Your Password"/>
             </div>
         </div>
@@ -33,7 +32,7 @@
                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                 <input type="text"
                        class="form-control"
-                       ng-model="model.user.fullname"
+                       ng-model="model.newuser.fullname"
                        id="name"  placeholder="Your Name"/>
             </div>
         </div>
@@ -45,7 +44,7 @@
                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                 <input type="email"
                        class="form-control"
-                       ng-model="model.user.email"
+                       ng-model="model.newuser.email"
                        id="email"  placeholder="Your Email"/>
             </div>
         </div>
@@ -58,19 +57,68 @@
                 <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
                 <input type="number"
                        class="form-control"
-                       ng-model="model.user.phone"
+                       ng-model="model.newuser.phone"
                        id="phone"  placeholder="Your Mobile"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="roles" class="cols-sm-2 control-label required">Roles</label>
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <label class="checkbox-inline">
+                    <input  id="roles"
+                            type="checkbox"
+                            value="ADMIN"
+                            ng-true-value = "true"
+                            ng-model="model.rolesModel.admin">ADMIN</label>
             </div>
         </div>
     </div>
     <div class="form-group ">
         <button type="button"
                 class="btn btn-primary btn-lg btn-block login-button"
-                ng-click="model.signUp(model.user)">SignUp</button>
-    </div>
-    <div class="form-group ">
-        <a type="button"
+                ng-click="model.createUser(model.newuser)">Create</button>
+        <button type="button"
                 class="btn btn-danger btn-lg btn-block login-button"
-                href="#!/">Cancel</a>
+                ng-click="model.hideCreateUser()">Cancel</button>
     </div>
+</div>
+
+<!------------------------------------------------------------------------------------>
+<div class="container-fluid">
+    <h1>Users</h1>
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-heading active">
+            <div class="row">
+                <div class="col-xs-4">
+                    Username
+                </div>
+                <div class="col-xs-4 hidden-xs">
+                    Fullname
+                </div>
+                <div class="col-xs-4">
+                    Roles
+                </div>
+                <div class="admin-panel-plus-user"
+                     ng-click="model.showCreateNewUser()">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="user in model.users" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="{{'#!/user/'+user.username}}">{{user.username}}</a>
+                </div>
+                <div class="col-xs-4 hidden-xs">
+                    {{user.fullname}}
+                </div>
+                <div class="col-xs-4">
+                    {{user.roles}}
+                </div>
+
+            </div>
+        </li>
+    </ul>
 </div>

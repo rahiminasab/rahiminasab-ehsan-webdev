@@ -455,3 +455,53 @@ select.form-control {
     top: 20px;
     color: red;
 }
+
+
+.admin-panel-selector {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    font-size: 1.5em;
+    background-color: azure;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0.9;
+    z-index: 20;
+}
+
+.admin-panel-delete {
+    background-color: lavenderblush;
+    color: red;
+}
+
+.admin-panel-edit {
+    background-color: palegreen;
+    left: 84px;
+    color: green;
+}
+
+.admin-panel-selector:hover {
+    cursor: pointer;
+}
+
+.admin-panel-selector a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.admin-panel-plus-user {
+    position: absolute;
+    right: 15px;
+    color: white;
+    font-size: 1.4em;
+    z-index: 5;
+}
+
+.admin-panel-plus-user:hover {
+    cursor: pointer;
+}
+
+.admin-panel-delete-channel{
+    top: 100px;
+}

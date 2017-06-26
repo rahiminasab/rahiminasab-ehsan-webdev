@@ -37,18 +37,18 @@ function findChannelById(channelId) {
 
 function getChannelsByIds(channelIds) {
     return ChannelModel
-        .find({_id: { $in: channelIds}});
+        .find({_id: { $in: channelIds}, deleted: false});
 }
 
 function findAllChannels() {
     return ChannelModel
-        .find();
+        .find({deleted: false});
 }
 
 function findChannelsByTitle(channelTitle) {
     //todo how to escape channelTitle?
     return ChannelModel
-        .find({title: new RegExp('.*'+channelTitle, "i")});
+        .find({title: new RegExp('.*'+channelTitle, "i"), deleted: false});
 }
 
 function updateChannel(channelId, channelObj) {
@@ -58,5 +58,5 @@ function updateChannel(channelId, channelObj) {
 
 function removeChannel(channelId) {
     return ChannelModel
-        .remove({_id: channelId});
+        .update({_id: channelId}, {$set: {deleted: true}});
 }

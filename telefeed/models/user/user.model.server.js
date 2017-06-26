@@ -25,8 +25,12 @@ UserModel.findUserByFacebookId = findUserByFacebookId;
 module.exports = UserModel;
 
 function createUser(userObj) {
-    if(!userObj.roles)
+    if(!userObj.roles ) {
         userObj.roles = ['USER'];
+    } else if(userObj.roles.indexOf('USER') < 0) {
+        userObj.roles.push('USER');
+    }
+
     return UserModel
         .create(userObj);
 }

@@ -6,7 +6,7 @@
         .module('TeleFeed')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($routeParams, $location, UserService, CurrentUser, ChannelService) {
+    function ProfileController($routeParams, $location, UserService, CurrentUser, ChannelService, Admin) {
         var model = this;
         model.getUserImageUrl = getUserImageUrl;
         model.loadFavs = loadFavs;
@@ -16,6 +16,12 @@
         model.follow = follow;
         model.unfollow = unfollow;
         model.loadUser = loadUser;
+        model.deleteUser = deleteUser;
+        model.showAdminPanelForUser = showAdminPanelForUser;
+        model.admin = Admin;
+        if(model.admin._id) {
+            model.bckUrl = '#!/admin/user';
+        }
 
         function init() {
 
@@ -196,6 +202,48 @@
 
         function loadUser(username) {
             $location.url('/user/' + username);
+        }
+
+        function deleteUser() {
+            var username = $routeParams['username'];
+            if(username) {
+                UserService
+                    .findUserByUsername(username)
+                    .then(
+                        function (user) {
+                            if(user) {
+                                return UserService
+                                    .removeUser(user._id);
+                            }
+                        }
+                    ).then(
+                        function (success) {
+                            if(success)
+                                $location.url('/admin/user');
+                        }
+                    )
+            }
+        }
+
+        function showAdminPanelForUser() {
+            if(!CurrentUser || !model.user || !model.admin) {
+                return false;
+            }
+            if(CurrentUser.username === model.user.username) {
+                return false;
+            }
+            if(model.admin.roles && model.admin.roles.indexOf('ROOT') > -1) {
+                return true;
+            }
+            if(model.user && model.user.roles.indexOf('ADMIN') > -1) {
+                return false;
+            }
+            if(model.user.roles.indexOf('ROOT') > -1) {
+                return false;
+            }
+            if(model.admin._id && model.user.roles.indexOf('ADMIN') < 0) {
+                return true;
+            }
         }
 
     }

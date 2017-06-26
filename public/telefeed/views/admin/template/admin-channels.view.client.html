@@ -1,0 +1,28 @@
+<div ng-include="'views/common/header/header.html'" ng-controller="HeaderController as model"  ></div>
+
+<div class="container-fluid">
+    <h1>Channels</h1>
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-heading active">
+            <div class="row">
+                <div class="col-xs-6">
+                    Title
+                </div>
+                <div class="col-xs-6">
+                    Author
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="channel in model.channels" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="{{'#!/channel/'+channel._id}}">{{channel.title}}</a>
+                </div>
+                <div class="col-xs-6">
+                    {{channel.author}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+

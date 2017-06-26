@@ -7,11 +7,13 @@
         .controller('PostListController', PostListController);
 
     function PostListController($location, $routeParams,
-                                UserService, ChannelService, PostService, CurrentUser) {
+                                UserService, ChannelService, PostService, CurrentUser, Admin) {
         var model = this;
         model.loadPost = loadPost;
         model.getDate = getDate;
         model.bookmarkChannel = bookmarkChannel;
+        model.softDelete = softDelete;
+        model.admin = Admin;
         model.bckUrl = '#!/channel';
 
         function init() {
@@ -92,6 +94,16 @@
                     )
             }
 
+        }
+
+        function softDelete(channel) {
+            ChannelService
+                .deleteChannel(channel._id)
+                .then(
+                    function (success) {
+                        $location.url('/admin/channel');
+                    }
+                )
         }
 
     }
