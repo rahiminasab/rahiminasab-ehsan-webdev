@@ -21,48 +21,26 @@
 
             if(!CurrentUser._id) {
                 model.anonymView = true;
+            } else {
+                model.userBMChannels = CurrentUser.bookmarked_channels;
+                ChannelService
+                    .findChannelById(channelId)
+                    .then(
+                        function (channel) {
+                            if(channel) {
+                                model.channel = channel;
+                                return PostService
+                                    .getChannelPosts(channelId);
+                            }
+                        }
+                    ).then(
+                        function (posts) {
+                            if(posts) {
+                                model.posts = posts;
+                            }
+                        }
+                    )
             }
-
-            ChannelService
-                .findChannelById(channelId)
-                .then(
-                    function (channel) {
-                        if(channel) {
-                            model.channel = channel;
-                            return PostService
-                                .getChannelPosts(channelId);
-                        }
-                    }
-                ).then(
-                    function (posts) {
-                        if(posts) {
-                            model.posts = posts;
-                            if(CurrentUser._id) {
-                                return UserService
-                                    .getBookmarkedChannels()
-                            }
-                        }
-                    }
-                ).then(
-                    function (bookmarkedChannels) {
-                        if(bookmarkedChannels) {
-                            model.bookmarkedChannels = bookmarkedChannels;
-
-                            if(model.bookmarkedChannels.indexOf(model.channel._id) > -1) {
-                                $('#channel-fav-icon-in-full-row')
-                                    .removeClass('fa-star-o')
-                                    .addClass('fa-star')
-                                    .css('color', 'gold');
-                            } else {
-                                $('#channel-fav-icon-in-full-row')
-                                    .removeClass('fa-star')
-                                    .addClass('fa-star-o')
-                                    .css('color', 'black');
-                            }
-
-                        }
-                    }
-                )
         }
         init();
 
@@ -75,8 +53,9 @@
         }
 
         function bookmarkChannel(channelId) {
-            var index = model.bookmarkedChannels.indexOf(channelId);
+            var index = model.userBMChannels.indexOf(channelId);
             if(index < 0) {
+                CurrentUser.bookmarked_channels.push(channelId);
                 UserService
                     .bookmarkChannel(channelId)
                     .then(
@@ -85,6 +64,7 @@
                         }
                     )
             } else {
+                CurrentUser.bookmarked_channels.splice(index, 1);
                 UserService
                     .unbookmarkChannel(channelId)
                     .then(

@@ -10,10 +10,12 @@
                         <span><i class="fa fa-bullhorn"></i></span>
                     </div>
                     <div class="channel-title">{{channel.title}}</div>
-                    <div class="channel-star-icon"
-                         ng-style="{'color': model.channelFavIconMap[channel._id][0]}">
+                    <div class="channel-star-icon">
                         <span class="pull-right"
-                              ng-click="model.bookmarkChannel(channel._id)"><i class="{{model.channelFavIconMap[channel._id][1]}}"></i></span>
+                              ng-click="model.bookmarkChannel(channel._id)">
+                            <i ng-show="model.userBMChannels && model.userBMChannels.indexOf(channel._id) < 0" class="fa fa-star-o"></i>
+                            <i ng-show="model.userBMChannels && model.userBMChannels.indexOf(channel._id) > -1" class="fa fa-star"></i>
+                        </span>
                     </div>
                 </li>
             </ul>

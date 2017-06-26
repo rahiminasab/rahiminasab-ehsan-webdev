@@ -294,6 +294,10 @@ select.form-control {
     top: 20px;
 }
 
+.channel-star-icon .fa-star {
+    color: gold;
+}
+
 .channel-info-row {
     background-color: cornflowerblue;
     height: 50px;
@@ -347,6 +351,10 @@ select.form-control {
     right: 20px;
     top: 10px;
     font-size: 1.6em;
+}
+
+.channel-star-icon-in-full-row .fa-star {
+    color: gold;
 }
 
 .channel-star-icon-in-full-row:hover {

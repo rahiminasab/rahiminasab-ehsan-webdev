@@ -21,6 +21,8 @@
 
             if(!CurrentUser._id) {
                 model.anonymView = true;
+            } else {
+                model.userBMChannels = CurrentUser.bookmarked_channels;
             }
 
             var postId = $routeParams['postId'];
@@ -46,31 +48,8 @@
                         if(channel) {
                             model.channel = channel;
                             model.bckUrl = '#!/channel/' + channel._id;
-                            if(CurrentUser._id) {
-                                return UserService
-                                    .getBookmarkedChannels()
-                            }
                         }
 
-                    }
-                ).then(
-                    function (bookmarkedChannels) {
-                        if(bookmarkedChannels) {
-                            model.bookmarkedChannels = bookmarkedChannels;
-
-                            if(model.bookmarkedChannels.indexOf(model.channel._id) > -1) {
-                                $('#channel-fav-icon-in-full-row')
-                                    .removeClass('fa-star-o')
-                                    .addClass('fa-star')
-                                    .css('color', 'gold');
-                            } else {
-                                $('#channel-fav-icon-in-full-row')
-                                    .removeClass('fa-star')
-                                    .addClass('fa-star-o')
-                                    .css('color', 'black');
-                            }
-
-                        }
                     }
                 )
         }
@@ -136,8 +115,9 @@
         }
 
         function bookmarkChannel(channelId) {
-            var index = model.bookmarkedChannels.indexOf(channelId);
+            var index = model.userBMChannels.indexOf(channelId);
             if(index < 0) {
+                CurrentUser.bookmarked_channels.push(channelId);
                 UserService
                     .bookmarkChannel(channelId)
                     .then(
@@ -146,6 +126,7 @@
                         }
                     )
             } else {
+                CurrentUser.bookmarked_channels.splice(index, 1);
                 UserService
                     .unbookmarkChannel(channelId)
                     .then(

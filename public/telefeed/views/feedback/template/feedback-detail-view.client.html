@@ -10,7 +10,10 @@
             <div ng-show="!model.anonymView"
                  class="channel-star-icon-in-full-row">
                         <span class="pull-right"
-                              ng-click="model.bookmarkChannel(model.channel._id)"><i id="channel-fav-icon-in-full-row" class="fa fa-star-o"></i></span>
+                              ng-click="model.bookmarkChannel(model.channel._id)">
+                            <i ng-show="model.userBMChannels && model.userBMChannels.indexOf(model.channel._id) < 0" class="fa fa-star-o"></i>
+                            <i ng-show="model.userBMChannels && model.userBMChannels.indexOf(model.channel._id) > -1" class="fa fa-star"></i>
+                        </span>
             </div>
         </div>
     </div>
