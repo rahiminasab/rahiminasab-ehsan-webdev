@@ -6,7 +6,7 @@ var q = require('q');
 
 var PersistingService = require('./data-persist.service.server')();
 
-setInterval(importUpdates, (3600*1000));
+setInterval(importUpdates, (60*1000));
 
 var NEXT_FETCH_ID = 1;
 
