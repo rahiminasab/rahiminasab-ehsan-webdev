@@ -48,7 +48,7 @@
         }
 
         function updateUser(userObj) {
-            if(model.rolesModel.admin)
+            if(model.roleModel && model.rolesModel.admin)
                 userObj.roles.push('ADMIN');
             else {
                 var index = userObj.roles.indexOf('ADMIN');
